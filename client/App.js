@@ -1,8 +1,8 @@
 import React from 'react';
-
+import './App.scss'
 
 const App = ({children}) => (
-  <div>
+  <div className="body">
     <h1>Hello React HOT very...hot!!! </h1>
   </div>
 );

@@ -1,6 +1,7 @@
 # Compiled files
-build/
-idea/
+/build
+.build
+.idea
 
 # Config file
 config/config.js
