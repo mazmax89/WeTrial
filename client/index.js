@@ -1,22 +1,32 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import App from './App';
+import Root from './Root';
 import {AppContainer} from 'react-hot-loader'
+import {Provider} from "react-redux";
+import store from './store/store';
+
+const DefaultStore = store();
 
 ReactDom.render(
+  <Provider store={DefaultStore}>
     <AppContainer>
-        <App/>
-    </AppContainer>,
-    document.getElementById('app'));
+      <Root/>
+    </AppContainer>
+  </Provider>,
+document.getElementById('app')
+);
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default;
+  module.hot.accept('./Root', () => {
+    const NextApp = require('./Root').default;
     ReactDom.render(
-      <AppContainer>
-        <NextApp/>
-      </AppContainer>,
-      document.getElementById('app'));
+      <Provider store={DefaultStore}>
+        <AppContainer>
+          <NextApp/>
+        </AppContainer>
+      </Provider>,
+    document.getElementById('app')
+  );
   });
 }
 
