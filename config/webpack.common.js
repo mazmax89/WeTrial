@@ -31,6 +31,12 @@ module.exports = {
     rules: [
       // JS files
       {
+        enforce: "pre",
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+      },
+      {
         test: /\.jsx?$/,
         include: helpers.root('client'),
         loader: 'babel-loader',

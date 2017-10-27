@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Route, Router, BrowserRouter} from 'react-router-dom';
-import App from "./container/App";
-import Hello from "./container/Hello";
+import {Route, BrowserRouter} from 'react-router-dom';
+import CounterApp from './container/CounterApp';
 
 
 export default class Root extends Component {
@@ -9,7 +8,7 @@ export default class Root extends Component {
     return (
       <div>
         <BrowserRouter>
-            <Route component={Hello}/>
+            <Route component={CounterApp}/>
         </BrowserRouter>
       </div>
     )

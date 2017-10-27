@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Root from './Root';
 import {AppContainer} from 'react-hot-loader'
-import {Provider} from "react-redux";
+import {Provider} from 'react-redux';
 import store from './store/store';
 
 const DefaultStore = store();
