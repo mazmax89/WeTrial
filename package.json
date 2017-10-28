@@ -31,7 +31,9 @@
     "node-sass": "^4.5.3",
     "nodemon": "^1.11.0",
     "postcss-loader": "^2.0.6",
+    "prop-types": "latest",
     "react": "^15.6.1",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-redux": "^5.0.6",
@@ -45,8 +47,7 @@
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2",
     "webpack-merge": "^4.1.0",
-    "whatwg-fetch": "^2.0.3",
-    "prop-types": "latest"
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
