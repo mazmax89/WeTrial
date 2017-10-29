@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
-import {Route, BrowserRouter, Switch} from 'react-router-dom';
-import CounterApp from './container/CounterApp';
-import Home from './container/Home';
+import App from './container/App.jsx';
+import BrowserRouter from 'react-router-dom/es/BrowserRouter';
+
 
 
 export default class Root extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route path='/Counter' component={CounterApp}/>
-        </Switch>
+        <App/>
       </BrowserRouter>
     );
   }
