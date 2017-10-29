@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
-import {Route, BrowserRouter} from 'react-router-dom';
+import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import CounterApp from './container/CounterApp';
+import Home from './container/Home';
 
 
 export default class Root extends Component {
   render() {
     return (
-      <div>
-        <BrowserRouter>
-            <Route component={CounterApp}/>
-        </BrowserRouter>
-      </div>
-    )
-      ;
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route path='/Counter' component={CounterApp}/>
+        </Switch>
+      </BrowserRouter>
+    );
   }
 }
