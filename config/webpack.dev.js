@@ -10,12 +10,13 @@ module.exports = merge(commonConfig, {
       'webpack-hot-middleware/client',
     ]
   },
-
+  resolve: {
+    extensions: ['.webpack.js', '.web.js', '.js', '.jsx', '.scss', '.html'],
+  },
   output: {
     filename: 'js/[name].js',
     chunkFilename: '[id].chunk.js'
   },
-
   devServer: {
     contentBase: './public',
     historyApiFallback: true,
