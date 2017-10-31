@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/es/Button';
 
 export default class Counter extends Component {
 
@@ -10,7 +9,7 @@ export default class Counter extends Component {
       <p>
         Clicked: {counter} times
         {' '}
-        <Button bsStyle='success' onClick={increment}>+</Button>
+        <button onClick={increment}>+</button>
         {' '}
         <button onClick={decrement}>-</button>
         {' '}
