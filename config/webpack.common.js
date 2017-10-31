@@ -24,7 +24,8 @@ module.exports = {
   resolve: {
     alias: {
       'app': 'client/'
-    }
+    },
+    extensions: ['.webpack.js', '.web.js', '.js', '.jsx', '.scss', '.html'],
   },
 
   module: {
