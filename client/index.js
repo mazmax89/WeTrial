@@ -10,7 +10,7 @@ const DefaultStore = store();
 
 ReactDom.render(
   <Provider store={DefaultStore}>
-    <AppContainer>
+    <AppContainer warnings={false}>
       <BrowserRouter>
         <App/>
       </BrowserRouter>

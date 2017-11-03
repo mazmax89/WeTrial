@@ -13,11 +13,10 @@ export default class App extends Component {
             <div>
                 <Header/>
                 <AnimatedSwitch
-                    atEnter={{marginLeft: -500}}
-                    atLeave={{marginLeft: -500}}
+                    atEnter={{marginLeft: -2000}}
+                    atLeave={{marginLeft: -1800}}
                     atActive={{marginLeft: 0}}
-                    className='switch-wrapper'
-                >
+                    className='switch-wrapper'>
                     <Route path='/' exact component={Home}/>
                     <Route path='/Counter' component={CounterApp}/>
                 </AnimatedSwitch>

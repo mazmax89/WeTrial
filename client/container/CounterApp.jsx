@@ -8,7 +8,7 @@ class CounterApp extends Component {
     render() {
         const {counter, dispatch} = this.props;
         return (
-            <div>
+            <div className='row justify-content-center'>
                 <Counter counter={counter}
                          {...bindActionCreators(CounterActions, dispatch)} />
             </div>
