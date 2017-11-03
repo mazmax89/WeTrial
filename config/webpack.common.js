@@ -6,16 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const helpers = require('./helpers');
 const NODE_ENV = process.env.NODE_ENV;
 const isProd = NODE_ENV === 'production';
-const hot = !isProd ? ('react-hot-loader/patch') : null;
 
 module.exports = {
-  entry: {
-    'app': [
-      hot,
-      helpers.root('client/index.js')
-    ]
-  },
-
   output: {
     path: helpers.root('build'),
     publicPath: '/'
@@ -25,17 +17,17 @@ module.exports = {
     alias: {
       'app': 'client/'
     },
-    extensions: ['.webpack.js', '.web.js', '.js', '.jsx', '.scss', '.html'],
+    extensions: ['.webpack.js', '.web.js', '.js', '.jsx', '.scss', '.html']
   },
 
   module: {
     rules: [
       // JS files
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "eslint-loader",
+        loader: 'eslint-loader'
       },
       {
         test: /\.jsx?$/,
@@ -43,7 +35,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-          plugins: ["react-hot-loader/babel"]
+          plugins: ['react-hot-loader/babel']
         }
       },
 
@@ -94,7 +86,7 @@ module.exports = {
     }),
 
     new ExtractTextPlugin({
-      filename: 'css/[name].css',
+      filename: 'css/[name].[hash].css',
       disable: !isProd
     }),
 
