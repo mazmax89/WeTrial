@@ -13,9 +13,9 @@ export default class App extends Component {
             <div>
                 <Header/>
                 <AnimatedSwitch
-                    atEnter={{marginLeft: -2000}}
-                    atLeave={{marginLeft: -1800}}
-                    atActive={{marginLeft: 0}}
+                    atEnter={{marginLeft: -1000, opacity: 0}}
+                    atLeave={{marginLeft: 1000, opacity: 0}}
+                    atActive={{marginLeft: 0, opacity: 1}}
                     className='switch-wrapper'>
                     <Route path='/' exact component={Home}/>
                     <Route path='/Counter' component={CounterApp}/>
