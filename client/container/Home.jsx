@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
+import MenuItem from '../components/MenuItem';
+import './HomeStyle.scss';
 
 export default class Home extends Component {
     render() {
         return (
-            <div className='row justify-content-center'>
-                <div className='col-xs-12 col-md-3'>
-                    <h1>Home</h1>
-                    <p>Welcome to the world of trials!</p>
+            <div className='homePage container-fluid justify-content-center'>
+                <div className='row menu'>
+                    <MenuItem to='' name='Home'/>
+                    <MenuItem to='Counter' name='Counter'/>
                 </div>
             </div>
         );

@@ -1,0 +1,19 @@
+.menu-item {
+  margin: 15px;
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 35px 0px;
+  text-align: center;
+  background-color: white;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+
+
+  50% {
+    transform: scale(1.03) rotate(4deg);
+  }
+}
