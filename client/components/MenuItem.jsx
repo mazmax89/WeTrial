@@ -6,8 +6,10 @@ export default class MenuItem extends Component {
 
     render() {
         return (
-            <div className='menu-item'>
-                <NavLink to={'/'+(this.props.to)} exact activeClassName='active'>{this.props.name}</NavLink>
+            <div className='col-xs-2'>
+                <div className='menu-item '>
+                    <NavLink to={'/' + (this.props.to)} exact activeClassName='active'>{this.props.name}</NavLink>
+                </div>
             </div>
         );
     }

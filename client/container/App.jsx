@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Home from './Home';
 import CounterApp from './CounterApp';
 import {AnimatedSwitch} from 'react-router-transition';
+import Footer from '../components/Footer';
 
 
 export default class App extends Component {
@@ -20,6 +21,7 @@ export default class App extends Component {
                     <Route path='/' exact component={Home}/>
                     <Route path='/Counter' component={CounterApp}/>
                 </AnimatedSwitch>
+                <Footer/>
             </div>
         );
     }

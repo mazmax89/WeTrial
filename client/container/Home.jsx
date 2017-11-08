@@ -5,12 +5,12 @@ import './HomeStyle.scss';
 export default class Home extends Component {
     render() {
         return (
-            <div className='homePage container-fluid justify-content-center'>
-                <div className='row menu'>
+            <main className='homePage container-fluid'>
+                <div className='menu row justify-content-center'>
                     <MenuItem to='' name='Home'/>
                     <MenuItem to='Counter' name='Counter'/>
                 </div>
-            </div>
+            </main>
         );
     }
 }
