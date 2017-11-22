@@ -8,7 +8,8 @@ export default class Home extends Component {
             <main className='homePage container-fluid'>
                 <div className='menu row justify-content-center'>
                     <MenuItem to='' name='Home'/>
-                    <MenuItem to='Counter' name='Counter'/>
+                    <MenuItem to='counter' name='Counter'/>
+                    <MenuItem to='signup' name='Sign Up'/>
                 </div>
             </main>
         );

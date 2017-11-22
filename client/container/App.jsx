@@ -4,6 +4,7 @@ import Route from 'react-router-dom/es/Route';
 import Header from '../components/Header';
 import Home from './Home';
 import CounterApp from './CounterApp';
+import SignUp from './SignUp';
 import {AnimatedSwitch} from 'react-router-transition';
 import Footer from '../components/Footer';
 
@@ -19,7 +20,8 @@ export default class App extends Component {
                     atActive={{marginLeft: 0, opacity: 1}}
                     className='switch-wrapper'>
                     <Route path='/' exact component={Home}/>
-                    <Route path='/Counter' component={CounterApp}/>
+                    <Route path='/counter' component={CounterApp}/>
+                    <Route path='/signup' component={SignUp}/>
                 </AnimatedSwitch>
                 <Footer/>
             </div>

@@ -28,7 +28,8 @@ export default class Header extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav navbar>
                             <NavLink to='/' exact activeClassName='active'>Home</NavLink>
-                            <NavLink to='/Counter' exact activeClassName='active'>Counter</NavLink>
+                            <NavLink to='/signup' exact activeClassName='active'>Sign up!!!!!</NavLink>
+                            <NavLink to='/counter' exact activeClassName='active'>Counter</NavLink>
                         </Nav>
                     </Collapse>
                 </Navbar>
