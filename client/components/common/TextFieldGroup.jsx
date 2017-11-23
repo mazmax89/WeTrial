@@ -8,7 +8,7 @@ class TextFieldGroup extends Component {
         this.props = props;
     }
 
-    public render() {
+    render() {
         return (
             <div>
                 <Input className='formControl'

@@ -3,8 +3,8 @@ import  {User} from '../models/User';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import config from '../jwtConfig';
-let router = express.Router();
 
+let router = express.Router();
 router.post('/', (req, res) => {
   const {identifier, password} = req.body;
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup} from 'reactstrap';
-import validateInput from '../../../server/utils/validations/Signup';
+import validateInput from '../../server/utils/validation/SignUp';
 import TextFieldGroup from './common/TextFieldGroup';
 
 class SignUpForm extends Component {
@@ -18,7 +18,7 @@ class SignUpForm extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    private onChanged(e) {
+    onChanged(e) {
         let stateName = e.target.name;
         if (stateName === 'username') {
             this.setState({username: e.target.value});
@@ -29,7 +29,7 @@ class SignUpForm extends Component {
         }
     }
 
-    private isValid() {
+    isValid() {
         const {errors, isValid} = validateInput(this.state);
 
         if (!isValid) {
@@ -39,7 +39,7 @@ class SignUpForm extends Component {
         return isValid;
     }
 
-    private onSubmit(e) {
+    onSubmit(e) {
         e.preventDefault();
 
         if (this.isValid()) {
@@ -55,14 +55,14 @@ class SignUpForm extends Component {
 
     }
 
-    public render() {
+    render() {
         const errors = this.state.errors;
         return (
-            <Form horizontal onSubmit={this.onSubmit}>
-                <div className={style.title}>
+            <Form onSubmit={this.onSubmit}>
+                <div className='title'>
                     <h1>Create account</h1>
                 </div>
-                <FormGroup className={style.formGroup} controlId='formHorizontalEmail'>
+                <FormGroup className='form-group'>
                     <TextFieldGroup
                         error={errors.username}
                         label='Username'
@@ -84,16 +84,16 @@ class SignUpForm extends Component {
                         field='confirmPassword'
                         type='password'
                     />
-                    <Button disabled={this.state.isLoading} className={style.btnDefault} type='submit'>
+                    <Button disabled={this.state.isLoading} className='btn' type='submit'>
                         SIGNUP
                     </Button>
                 </FormGroup>
-                <div className={style.title}>
-                    <h1>Or <a href='/login'>login</a></h1>
+                <div className='title'>
+                    <h1>Or <a href='/signin'>login</a></h1>
                 </div>
             </Form>
         );
     }
 }
 
-export default SignupForm;
+export default SignUpForm;
