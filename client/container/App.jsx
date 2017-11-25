@@ -7,6 +7,7 @@ import CounterApp from './CounterApp';
 import SignUp from './SignUp';
 import {AnimatedSwitch} from 'react-router-transition';
 import Footer from '../components/Footer';
+import FlashMessagesList from '../components/common/FlashMessagesList';
 
 
 export default class App extends Component {
@@ -14,6 +15,7 @@ export default class App extends Component {
         return (
             <div>
                 <Header/>
+                <FlashMessagesList/>
                 <AnimatedSwitch
                     atEnter={{marginLeft: -1000, opacity: 0}}
                     atLeave={{marginLeft: 1000, opacity: 0}}

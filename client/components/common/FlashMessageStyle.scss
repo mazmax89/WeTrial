@@ -1,0 +1,14 @@
+
+.FlashMessageContainer {
+  width: 100%;
+  text-align: center;
+
+  .closeFlashMessage {
+    height: 23px;
+    margin-left: 10px;
+    width: 51px;
+    background-color: transparent;
+    border-color: grey;
+    border-radius: 5px;
+  }
+}

@@ -3,6 +3,9 @@ import {Button, Form, FormGroup} from 'reactstrap';
 import validateInput from '../../server/utils/validation/SignUp';
 import TextFieldGroup from './common/TextFieldGroup';
 import './SignUpFormStyle.scss';
+import PropTypes from 'prop-types';
+import Redirect from 'react-router-dom/es/Redirect';
+
 
 class SignUpForm extends Component {
 
@@ -14,6 +17,7 @@ class SignUpForm extends Component {
             confirmPassword: '',
             errors: {},
             isLoading: false,
+            redirect: false
         };
         this.onChanged = this.onChanged.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -47,10 +51,14 @@ class SignUpForm extends Component {
             this.setState({errors: {}, isLoading: true});
             this.props.userSignUpRequest(this.state).then(
                 () => {
-                    setInterval(window.location.reload(), 10000);
+                    this.props.addFlashMessage({
+                        type: 'success',
+                        text: 'You signed up successfully. Welcome!'
+                    });
+                    this.setState({redirect: true});
                 }, (data) => {
                     this.setState({errors: data.response.data, isLoading: false});
-                },
+                }
             );
         }
 
@@ -58,6 +66,7 @@ class SignUpForm extends Component {
 
     render() {
         const errors = this.state.errors;
+        const redirect = (this.state.redirect? <Redirect push to='/'/> : null);
         return (
             <Form onSubmit={this.onSubmit}>
                 <div className='title'>
@@ -92,13 +101,14 @@ class SignUpForm extends Component {
                 <div className='title'>
                     <h1>Or <a href='/signin'>login</a></h1>
                 </div>
+                {redirect}
             </Form>
         );
     }
 }
 
 SignUpForm.propTypes = {
-    userSignUpRequest: React.PropTypes.func.isRequired,
-}
-
+    userSignUpRequest: PropTypes.func.isRequired,
+    addFlashMessage: PropTypes.func.isRequired
+};
 export default SignUpForm;
