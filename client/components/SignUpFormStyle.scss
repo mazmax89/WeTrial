@@ -4,8 +4,17 @@
   > h1 {
     font-size: 28px;
     margin: 0px;
-    > a:hover{
-      color: #c6c6c6;
+    button {
+      border: none;
+      box-shadow: none;
+      background: none;
+      color: #1a8034;
+      cursor: pointer;
+
+      &:hover {
+        color: #23aa50;
+        text-decoration: underline;
+      }
     }
   }
 }

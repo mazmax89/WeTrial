@@ -11,7 +11,7 @@ class TextFieldGroup extends Component {
 
     render() {
         return (
-            <div>
+            <div className='textField'>
                 <Input className='formControl'
                              type={this.props.type}
                              name={this.props.field}

@@ -98,7 +98,7 @@ class SignUpForm extends Component {
                     </Button>
                 </FormGroup>
                 <div className='title'>
-                    <h1>Or <a onClick={() => {this.setState({redirect: true});}}>sign in</a></h1>
+                    <h1>Or <button onClick={() => {this.setState({redirect: true});}}>sign in</button></h1>
                 </div>
                 {redirect}
             </Form>
