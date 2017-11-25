@@ -1,7 +1,7 @@
 import * as express from 'express';
-import commonValidations from '../utils/validation/SignUp';
+import commonValidations from '../utils/validation/signUp';
 import * as bcrypt from 'bcrypt';
-import  {User} from '../models/User';
+import  {User} from '../models/user';
 import {isEmpty} from 'lodash';
 import * as Promise from 'bluebird';
 

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup} from 'reactstrap';
-import validateInput from '../../server/utils/validation/SignUp';
+import validateInput from '../../server/utils/validation/signUp';
 import TextFieldGroup from './common/TextFieldGroup';
 import './SignUpFormStyle.scss';
 import PropTypes from 'prop-types';
 import Redirect from 'react-router-dom/es/Redirect';
-
 
 class SignUpForm extends Component {
 
@@ -66,7 +65,7 @@ class SignUpForm extends Component {
 
     render() {
         const errors = this.state.errors;
-        const redirect = (this.state.redirect? <Redirect push to='/'/> : null);
+        const redirect = (this.state.redirect? <Redirect push to='/signin'/> : null);
         return (
             <Form onSubmit={this.onSubmit}>
                 <div className='title'>
@@ -94,12 +93,12 @@ class SignUpForm extends Component {
                         field='confirmPassword'
                         type='password'
                     />
-                    <Button disabled={this.state.isLoading} className='btn' type='submit'>
+                    <Button disabled={this.state.isLoading} className='btnDefault' type='submit'>
                         SIGNUP
                     </Button>
                 </FormGroup>
                 <div className='title'>
-                    <h1>Or <a href='/signin'>login</a></h1>
+                    <h1>Or <a onClick={() => {this.setState({redirect: true});}}>sign in</a></h1>
                 </div>
                 {redirect}
             </Form>

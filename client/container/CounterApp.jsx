@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as CounterActions from '../actions/CounterActions';
+import * as CounterActions from '../actions/counterActions';
 import Counter from '../../client/components/Counter.jsx';
 
 class CounterApp extends Component {

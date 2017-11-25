@@ -8,13 +8,15 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../webpack.config');
 const isDev = process.env.NODE_ENV !== 'production';
-import SignUp from './routes/SignUp';
+import SignUp from './routes/signUp';
+import SignIn from './routes/signIn';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api/users', SignUp);
+app.use('/api/signin', SignIn);
 
 if (isDev) {
   const compiler = webpack(webpackConfig);
