@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Input} from 'reactstrap';
+import './TextFieldGroupStyles.scss';
 
 class TextFieldGroup extends Component {
 

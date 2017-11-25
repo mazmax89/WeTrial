@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button, Form, FormGroup} from 'reactstrap';
 import validateInput from '../../server/utils/validation/SignUp';
 import TextFieldGroup from './common/TextFieldGroup';
+import './SignUpFormStyle.scss';
 
 class SignUpForm extends Component {
 
@@ -44,7 +45,7 @@ class SignUpForm extends Component {
 
         if (this.isValid()) {
             this.setState({errors: {}, isLoading: true});
-            this.props.userSignupRequest(this.state).then(
+            this.props.userSignUpRequest(this.state).then(
                 () => {
                     setInterval(window.location.reload(), 10000);
                 }, (data) => {
@@ -94,6 +95,10 @@ class SignUpForm extends Component {
             </Form>
         );
     }
+}
+
+SignUpForm.propTypes = {
+    userSignUpRequest: React.PropTypes.func.isRequired,
 }
 
 export default SignUpForm;

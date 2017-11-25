@@ -1,6 +1,6 @@
 /*import * as knex from 'knex';
 import * as bookshelf from 'bookshelf';*/
-import * as knexConfig from '../knexConfig.js';
+import * as knexConfig from '../knexfile.js';
 const NODE_ENV = process.env.NODE_ENV;
 /*const isProd = NODE_ENV === 'production';*/
 

@@ -8,7 +8,7 @@ module.exports = {
       host: '127.0.0.1',
       user:     'root',
       password: 'qq2w3e4r',
-      database: 'ProjectM'
+      database: 'projectm'
     },
     pool: {
       min: 2,
@@ -22,7 +22,7 @@ module.exports = {
   production: {
     client: 'mysql',
     connection: {
-      database: 'mad_idea',
+      database: 'projectm',
       user:     'root',
       password: 'qq2w3e4r'
     },

@@ -1,0 +1,37 @@
+
+.title {
+  height: 40px;
+  > h1 {
+    font-size: 28px;
+    margin: 0px;
+    text-decoration: none;
+    > a:hover{
+      text-decoration: none;
+    }
+  }
+}
+
+.formGroup {
+  margin-top: 5px;
+  width: 100%;
+  vertical-align: baseline !important;
+  line-height: 25px;
+
+  .btnDefault {
+    width: 59%;
+    background-color: #1a8034;
+    color: #ffffff;
+    line-height: 30px;
+    box-shadow: none;
+    border: none;
+    margin-bottom: 20px;
+
+    &:active, &:hover {
+      box-shadow: none;
+      background-color: #2da94a;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}

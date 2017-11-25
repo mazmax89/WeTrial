@@ -1,28 +1,44 @@
 import * as express from 'express';
-import  {User} from '../models/User';
+import commonValidations from '../utils/validation/SignUp';
 import * as bcrypt from 'bcrypt';
-import * as jwt from 'jsonwebtoken';
-import config from '../jwtConfig';
+import  {User} from '../models/User';
+import {isEmpty} from 'lodash';
+import * as Promise from 'bluebird';
 
 let router = express.Router();
-router.post('/', (req, res) => {
-  const {identifier, password} = req.body;
 
-  User.query({
-    where: {username: identifier},
-  }).fetch().then((user) => {
-    if (user) {
-      if (bcrypt.compareSync(password, user.get('password_digest'))) {
-        const token = jwt.sign({
-          id: user.get('id'),
-          username: user.get('username'),
-        }, config.jwtSecret);
-        res.json({token});
+function validateInput(data, otherValidations) {
+  let errors = otherValidations(data);
+
+  return Promise.all([
+    User.where({username: data.username}).fetch().then((user) => {
+      if (user) {
+        errors.username = 'This username already exists';
       } else {
-        res.status(401).json({errors: {form: 'Incorrect username or password'}});
+        errors = null;
       }
+    }),
+  ]).then(() => {
+    return {
+      errors,
+      isValid: isEmpty(errors),
+    };
+  });
+}
+
+router.post('/', (req, res) => {
+  validateInput(req.body, commonValidations).then(({errors, isValid}) => {
+    if (isValid) {
+      let username = req.body.username;
+      let password_digest = req.body.firstPassword;
+      password_digest = bcrypt.hashSync(password_digest, 10);
+      User.forge({
+        username, password_digest,
+      }, {hasTimestamps: true}).save()
+        .then((user) => res.json({success: true}))
+        .catch((err) => res.status(500).json({error: err}));
     } else {
-      res.status(401).json({errors: {form: 'Incorrect username or password'}});
+      res.status(400).json(errors);
     }
   });
 });
