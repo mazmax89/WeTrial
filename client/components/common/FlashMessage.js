@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './FlashMessageStyle.scss';
 import PropTypes from 'prop-types';
+import {Alert} from 'reactstrap';
 
 class FlashMessage extends Component {
 
@@ -15,12 +16,12 @@ class FlashMessage extends Component {
 
   render() {
     return (
-      <div className='FlashMessageContainer'>
+      <Alert className='FlashMessageContainer' color='success'>
         {this.props.message.text}
         <a onClick={this.onClick} className='closeFlashMessage'>
           <i className='fa fa-window-close closeFlashMessage' aria-hidden='true'> </i>
         </a>
-      </div>
+      </Alert>
     );
   }
 }

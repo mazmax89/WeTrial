@@ -10,8 +10,9 @@ class Home extends Component {
         const {isAuthenticated} = this.props.signIn;
 
         const menu = (
-            isAuthenticated ?
-                null
+            isAuthenticated ? [
+                <MenuItem key='posts' to='posts' name='Posts'/>,
+                ]
                 : [
                     <MenuItem key='menuSignUp' to='signup' name='Sign Up'/>,
                     <MenuItem key='menuSignIn' to='signin' name='Sign In'/>

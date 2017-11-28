@@ -7,7 +7,8 @@ import SignUp from './SignUp';
 import {AnimatedSwitch} from 'react-router-transition';
 import Footer from '../components/Footer';
 import FlashMessagesList from '../components/common/FlashMessagesList';
-import SignIn from './SignIn/SignIn';
+import SignIn from './signIn/SignIn';
+import Posts from './topic/Topics';
 
 
 export default class App extends Component {
@@ -24,6 +25,7 @@ export default class App extends Component {
                         <Route path='/' exact component={Home}/>
                         <Route path='/signup' component={SignUp}/>
                         <Route path='/signin' component={SignIn}/>
+                        <Route path='/posts' component={Posts}/>
                     </AnimatedSwitch>
                 <Footer/>
             </div>

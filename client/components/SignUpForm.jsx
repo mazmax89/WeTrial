@@ -60,7 +60,6 @@ class SignUpForm extends Component {
                 }
             );
         }
-
     }
 
     render() {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './SignInStyle.scss';
-import SignInForm from '../../components/SignIn/SignInForm';
+import SignInForm from '../../components/signIn/SignInForm';
 import {signInAction} from '../../actions/sigInOutAction';
 import {connect} from 'react-redux';
 import {addFlashMessage} from '../../actions/flashMessageAction';

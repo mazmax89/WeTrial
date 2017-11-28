@@ -33,14 +33,17 @@ class Header extends Component {
 
         const menu = (
             isAuthenticated ?
-                <a className='link'
-                   href='#'
-                   onClick={this.logout.bind(this)}>
-                    Logout
-                </a>
+                [
+                    <NavLink key='posts' to='/posts' exact activeClassName='active'>Posts</NavLink>,
+                    <a key='logout' className='link'
+                       href='#'
+                       onClick={this.logout.bind(this)}>
+                        Logout
+                    </a>
+                ]
                 : [
-                    <NavLink key='1' to='/signup' exact activeClassName='active'>Sign Up</NavLink>,
-                    <NavLink  key='2' to='/signin' exact activeClassName='active'>Sign In</NavLink>
+                    <NavLink key='signup' to='/signup' exact activeClassName='active'>Sign Up</NavLink>,
+                    <NavLink key='signin' to='/signin' exact activeClassName='active'>Sign In</NavLink>
                 ]
         );
 
