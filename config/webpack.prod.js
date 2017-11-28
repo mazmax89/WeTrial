@@ -1,13 +1,14 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const helpers = require('./helpers');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
   entry: {
     'app': [
-      helpers.root('client/index.js')
+      helpers.root('client/index')
     ]
   },
 
@@ -17,14 +18,18 @@ module.exports = merge(commonConfig, {
   },
 
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-        screw_ie8: true
-      },
-      output: {
-        comments: false
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        ie8: false,
+        ecma: 6,
+        output: {
+          comments: false,
+          beautify: false,
+          ecma: 6,
+        },
+        warnings: false
       }
     })
+
   ]
 });

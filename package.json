@@ -11,7 +11,7 @@
   "scripts": {
     "start:dev": "set NODE_ENV=development&& webpack -p --progress --profile --colors && nodemon --exec babel-node -- server/server.js",
     "start:prod": " set NODE_ENV=production&& webpack -p --progress --profile --colors && --exec babel-node -- server/server.js",
-    "build:prod": " set NODE_ENV=production&& webpack -p --progress --profile --colors",
+    "build:prod": " set NODE_ENV=production&& webpack --progress --colors",
     "server": "nodemon --exec babel-node -- server/server.js"
   },
   "dependencies": {
@@ -66,6 +66,7 @@
     "eslint-loader": "^1.9.0",
     "eslint-plugin-react": "^7.4.0",
     "redux-devtools": "^3.4.0",
-    "redux-devtools-extension": "^2.13.2"
+    "redux-devtools-extension": "^2.13.2",
+    "uglifyjs-webpack-plugin": "^1.1.1"
   }
 }

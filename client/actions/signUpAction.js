@@ -6,8 +6,8 @@ export function userSignUpRequest(userData) {
   }
 }
 
-export function isUserExists(identifier) {
+export function isUserExists(identifier) { // eslint-disable-line
   return dispatch => { // eslint-disable-line
-    return axios.get(`/api/users/${identifier}`);
+    return axios.get('/api/users/${identifier}');
   }
 }
