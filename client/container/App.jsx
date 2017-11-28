@@ -16,7 +16,6 @@ export default class App extends Component {
             <div className='appContainer'>
                 <Header/>
                 <FlashMessagesList/>
-                <div className='animateContainer'>
                     <AnimatedSwitch
                         atEnter={{marginLeft: -1000, opacity: 0}}
                         atLeave={{marginLeft: 1000, opacity: 0}}
@@ -26,7 +25,6 @@ export default class App extends Component {
                         <Route path='/signup' component={SignUp}/>
                         <Route path='/signin' component={SignIn}/>
                     </AnimatedSwitch>
-                </div>
                 <Footer/>
             </div>
         );

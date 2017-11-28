@@ -10,14 +10,18 @@ class TextFieldGroup extends Component {
     }
 
     render() {
+        let warningClass = 'formControl';
+        if (this.props.error) {
+            warningClass = 'formControl warningInput';
+        }
         return (
             <div className='textField'>
-                <Input className='formControl'
-                             type={this.props.type}
-                             name={this.props.field}
-                             placeholder={this.props.label}
-                             onChange={this.props.onChanged}
-                             maxLength={32}
+                <Input className={warningClass}
+                       type={this.props.type}
+                       name={this.props.field}
+                       placeholder={this.props.label}
+                       onChange={this.props.onChanged}
+                       maxLength={32}
                 />
                 {this.props.error && <span className='warning'>{this.props.error}</span>}
             </div>

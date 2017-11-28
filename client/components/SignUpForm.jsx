@@ -94,11 +94,11 @@ class SignUpForm extends Component {
                         type='password'
                     />
                     <Button disabled={this.state.isLoading} className='btnDefault' type='submit'>
-                        SIGNUP
+                        Sign Up
                     </Button>
                 </FormGroup>
                 <div className='title'>
-                    <h1>Or <button onClick={() => {this.setState({redirect: true});}}>sign in</button></h1>
+                    <h1>Or <button onClick={() => {this.setState({redirect: true});}}>Sign In</button></h1>
                 </div>
                 {redirect}
             </Form>

@@ -85,7 +85,7 @@ class SignInForm extends Component {
             type='password'
           />
           <Button disabled={this.state.isLoading} className='btnDefault' type='submit'>
-            Login
+            Sign In
           </Button>
         </FormGroup>
         {redirect}
