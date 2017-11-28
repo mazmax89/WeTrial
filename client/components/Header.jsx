@@ -49,7 +49,6 @@ class Header extends Component {
                             <NavLink to='/' exact activeClassName='active'>Home</NavLink>
                             <NavLink to='/signup' exact activeClassName='active'>Sign Up</NavLink>
                             <NavLink to='/signin' exact activeClassName='active'>Sign In</NavLink>
-                            <NavLink to='/counter' exact activeClassName='active'>Counter</NavLink>
                             {signOut}
                         </Nav>
                     </Collapse>
