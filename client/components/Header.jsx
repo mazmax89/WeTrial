@@ -31,12 +31,17 @@ class Header extends Component {
     render() {
         const {isAuthenticated} = this.props.signIn;
 
-        const signOut = (
-            isAuthenticated ? <a className='link'
-                                 href='#'
-                                 onClick={this.logout.bind(this)}>
-                Logout
-            </a> : null
+        const menu = (
+            isAuthenticated ?
+                <a className='link'
+                   href='#'
+                   onClick={this.logout.bind(this)}>
+                    Logout
+                </a>
+                : [
+                    <NavLink key='1' to='/signup' exact activeClassName='active'>Sign Up</NavLink>,
+                    <NavLink  key='2' to='/signin' exact activeClassName='active'>Sign In</NavLink>
+                ]
         );
 
         return (
@@ -47,9 +52,7 @@ class Header extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav navbar>
                             <NavLink to='/' exact activeClassName='active'>Home</NavLink>
-                            <NavLink to='/signup' exact activeClassName='active'>Sign Up</NavLink>
-                            <NavLink to='/signin' exact activeClassName='active'>Sign In</NavLink>
-                            {signOut}
+                            {menu}
                         </Nav>
                     </Collapse>
                 </Navbar>

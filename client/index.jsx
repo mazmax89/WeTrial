@@ -5,8 +5,16 @@ import {Provider} from 'react-redux';
 import store from './store/index';
 import BrowserRouter from 'react-router-dom/es/BrowserRouter';
 import App from './container/App';
+import {setCurrentUser} from './actions/sigInOutAction';
+import * as jwt from 'jsonwebtoken';
+import setAuthorizationToken from '../server/utils/setAuthorizationToken';
 
 const DefaultStore = store();
+
+if (localStorage.jwtToken) {
+    setAuthorizationToken(localStorage.jwtToken);
+    DefaultStore.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)))
+}
 
 ReactDom.render(
   <Provider store={DefaultStore}>

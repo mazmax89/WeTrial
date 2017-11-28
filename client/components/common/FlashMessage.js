@@ -17,7 +17,9 @@ class FlashMessage extends Component {
     return (
       <div className='FlashMessageContainer'>
         {this.props.message.text}
-        <button onClick={this.onClick} className='closeFlashMessage'><span>&times;</span></button>
+        <a onClick={this.onClick} className='closeFlashMessage'>
+          <i className='fa fa-window-close closeFlashMessage' aria-hidden='true'> </i>
+        </a>
       </div>
     );
   }

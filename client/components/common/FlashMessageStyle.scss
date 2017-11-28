@@ -4,11 +4,10 @@
   text-align: center;
 
   .closeFlashMessage {
-    height: 23px;
+    cursor: pointer;
     margin-left: 10px;
-    width: 51px;
-    background-color: transparent;
-    border-color: grey;
-    border-radius: 5px;
+    &:hover {
+      color: #2da94a;
+    }
   }
 }

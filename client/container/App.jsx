@@ -13,7 +13,7 @@ import SignIn from './SignIn/SignIn';
 export default class App extends Component {
     render() {
         return (
-            <div>
+            <div className='appContainer'>
                 <Header/>
                 <FlashMessagesList/>
                 <AnimatedSwitch
