@@ -5,8 +5,8 @@ export default class Footer extends Component {
 
     render() {
         return (
-            <footer className='row justify-content-center'>
-                <small className='col-md-3'>Max Vdovychenko 2017™</small>
+            <footer className='footer'>
+                <span>WeTrial 2017™</span>
             </footer>
         );
     }

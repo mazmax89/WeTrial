@@ -16,15 +16,17 @@ export default class App extends Component {
             <div className='appContainer'>
                 <Header/>
                 <FlashMessagesList/>
-                <AnimatedSwitch
-                    atEnter={{marginLeft: -1000, opacity: 0}}
-                    atLeave={{marginLeft: 1000, opacity: 0}}
-                    atActive={{marginLeft: 0, opacity: 1}}
-                    className='switch-wrapper'>
-                    <Route path='/' exact component={Home}/>
-                    <Route path='/signup' component={SignUp}/>
-                    <Route path='/signin' component={SignIn}/>
-                </AnimatedSwitch>
+                <div className='animateContainer'>
+                    <AnimatedSwitch
+                        atEnter={{marginLeft: -1000, opacity: 0}}
+                        atLeave={{marginLeft: 1000, opacity: 0}}
+                        atActive={{marginLeft: 0, opacity: 1}}
+                        className='switch-wrapper'>
+                        <Route path='/' exact component={Home}/>
+                        <Route path='/signup' component={SignUp}/>
+                        <Route path='/signin' component={SignIn}/>
+                    </AnimatedSwitch>
+                </div>
                 <Footer/>
             </div>
         );
