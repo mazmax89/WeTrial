@@ -3,8 +3,9 @@ import './TopicItemStyle.scss';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Alert} from 'reactstrap';
+import TopicItem from './TopicItem';
 
-class TopicItem extends Component {
+class TopicsItemList extends Component {
 
     constructor(props) {
         super(props);
@@ -12,14 +13,15 @@ class TopicItem extends Component {
 
     render() {
         const {isAuthenticated} = this.props.signIn;
-        let topicData = this.props.topicData;
+        const topicsData = this.props.topicsData;
         if (isAuthenticated) {
             return (
-                <div className='topicItem'>
-                    <h4>Topics:</h4>
-                    <p>{topicData.topic_name}</p>
-                    <p>{topicData.topic_text}</p>
-                    <span>{topicData.created_at}</span>
+                <div className='topicsList'>
+                    {
+                        topicsData.map((topicsData) => {// eslint-disable-line
+                            return <TopicItem key={topicsData.id} topicData={topicsData} />// eslint-disable-line
+                        })
+                    }
                 </div>
             );
         } else {
@@ -32,15 +34,15 @@ class TopicItem extends Component {
     }
 }
 
-TopicItem.PropTypes = {
+TopicsItemList.PropTypes = {
     signIn: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) { //TODO remove from here
+function mapStateToProps(state) {
     return {
         signIn: state.signIn
     };
 }
 
-export default connect(mapStateToProps, null)(TopicItem);
+export default connect(mapStateToProps, null)(TopicsItemList);
 

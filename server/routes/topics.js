@@ -10,9 +10,9 @@ function validateInput(data, otherValidations) {
   let errors = otherValidations(data);
 
   return Promise.all([
-    Topic.where({topicName: data.topicName}).fetch().then((topic) => {
+    Topic.where({topic_name: data.topicName}).fetch().then((topic) => {
       if (topic) {
-        errors.topic = 'This topic already exists';
+        errors.topicName = 'This topic already exists';
       } else {
         errors = null;
       }
@@ -25,11 +25,16 @@ function validateInput(data, otherValidations) {
   });
 }
 
+router.get('/', (req, res) => {
+  Topic.fetchAll().then((topic) => res.json({topic}))
+    .catch((error) => res.status(500).json({error}));
+});
+
 router.post('/', (req, res) => {
-  validateInput(req.body, commonValidations).then(({errors, isValid}) => {
+  validateInput(req.body.topicData, commonValidations).then(({errors, isValid}) => {
     if (isValid) {
-      let topic_name = req.body.topicData.topicName;
-      let topic_text = req.body.topicData.firstPassword;
+        let topic_name = req.body.topicData.topicName;
+      let topic_text = req.body.topicData.topicText;
       let user_id = req.body.authData.user.id;
       Topic.forge({
         topic_name, topic_text,user_id,

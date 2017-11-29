@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer('user_id');
     table.string('topic_name').notNullable().unique();
-    table.text('idea_description');
+    table.text('topic_text');
     table.timestamps();
   });
 };

@@ -25,7 +25,7 @@ export default class App extends Component {
                         <Route path='/' exact component={Home}/>
                         <Route path='/signup' component={SignUp}/>
                         <Route path='/signin' component={SignIn}/>
-                        <Route path='/posts' component={Posts}/>
+                        <Route path='/topic' component={Posts}/>
                     </AnimatedSwitch>
                 <Footer/>
             </div>

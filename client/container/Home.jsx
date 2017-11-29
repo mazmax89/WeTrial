@@ -11,7 +11,7 @@ class Home extends Component {
 
         const menu = (
             isAuthenticated ? [
-                <MenuItem key='posts' to='posts' name='Posts'/>,
+                <MenuItem key='topic' to='topic' name='Topics'/>,
                 ]
                 : [
                     <MenuItem key='menuSignUp' to='signup' name='Sign Up'/>,

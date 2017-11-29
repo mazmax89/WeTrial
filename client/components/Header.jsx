@@ -34,7 +34,7 @@ class Header extends Component {
         const menu = (
             isAuthenticated ?
                 [
-                    <NavLink key='posts' to='/posts' exact activeClassName='active'>Posts</NavLink>,
+                    <NavLink key='topics' to='/topic' exact activeClassName='active'>Topics</NavLink>,
                     <a key='logout' className='link'
                        href='#'
                        onClick={this.logout.bind(this)}>

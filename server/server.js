@@ -10,6 +10,7 @@ const webpackConfig = require('../webpack.config');
 const isDev = process.env.NODE_ENV !== 'production';
 import SignUp from './routes/signUp';
 import SignIn from './routes/signIn';
+import Topic from './routes/topics';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', SignUp);
 app.use('/api/signin', SignIn);
+app.use('/api/topic', Topic);
 
 if (isDev) {
   const compiler = webpack(webpackConfig);
