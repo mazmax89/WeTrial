@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './CreateTopicStyle.scss';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Alert, Button, Form, FormGroup} from 'reactstrap';
+import {Alert, Button, Form, FormGroup, ModalFooter} from 'reactstrap';
 import TextFieldGroup from '../common/TextFieldGroup';
 import validateInput from '../../../server/utils/validation/createTopic';
 
@@ -63,11 +63,8 @@ class CreateTopic extends Component {
         const errors = this.state.errors;
         if (isAuthenticated) {
             return (
-                <div className='createTopics'>
+                <div className='createTopic'>
                     <Form onSubmit={this.onSubmit}>
-                        <div className='title'>
-                            <h1>Create topics</h1>
-                        </div>
                         <FormGroup className='form-group'>
                             <TextFieldGroup
                                 error={errors.topicName}
@@ -79,9 +76,12 @@ class CreateTopic extends Component {
                             <textarea name='topicText' onChange={this.onChanged} placeholder='Topic text'
                                       maxLength={255}/>
                             {errors && <span className='warning'>{errors.topicText}</span>}
-                            <Button disabled={this.state.isLoading} className='btnDefault' type='submit'>
-                                Post topic
-                            </Button>
+
+                            <ModalFooter>
+                                <Button disabled={this.state.isLoading} color='primary' type='submit'>
+                                    Post topic
+                                </Button>
+                            </ModalFooter>
                         </FormGroup>
                     </Form>
                 </div>

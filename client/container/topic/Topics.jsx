@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import './TopicsStyle.scss';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Alert} from 'reactstrap';
+import {
+    Alert, Button, Card, CardBody, CardTitle, Col, Modal, ModalBody, ModalHeader, Row
+} from 'reactstrap';
 import CreateTopic from '../../components/createTopicItem/CreateTopic';
 import {createTopicAction, getAllTopics} from '../../actions/topicsAction';
 import {addFlashMessage} from '../../actions/flashMessageAction';
@@ -15,9 +17,18 @@ class Topics extends Component {
         this.state = {
             topicsData: [],
             errors: {},
+            modal: false
         };
         this.initData();
+        this.toggle = this.toggle.bind(this);
     }
+
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
+
 
     initData() {
         this.props.getAllTopics().then(
@@ -26,7 +37,7 @@ class Topics extends Component {
             },
             (data) => {
                 this.setState({errors: data.response.data, isLoading: false});
-            },
+            }
         );
 
     }
@@ -37,8 +48,24 @@ class Topics extends Component {
         if (isAuthenticated) {
             return (
                 <div className='TopicsContainer'>
-                    <CreateTopic addFlashMessage={this.props.addFlashMessage}
-                                 createTopicAction={this.props.createTopicAction}/>
+                    <Row className='justify-content-center'>
+                        <Col xs='3' className='createTopicCard'>
+                            <Card>
+                                <CardBody>
+                                    <CardTitle>Create new topic</CardTitle>
+                                    <Button color='primary' onClick={this.toggle}>Create</Button>
+                                    <Modal isOpen={this.state.modal} toggle={this.toggle} className='modalCreateTopic'>
+                                        <ModalHeader toggle={this.toggle}>Create topic</ModalHeader>
+                                        <ModalBody>
+                                            <CreateTopic addFlashMessage={this.props.addFlashMessage}
+                                                         createTopicAction={this.props.createTopicAction}/>
+                                        </ModalBody>
+
+                                    </Modal>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
                     <TopicsItemList topicsData={this.state.topicsData}/>
                 </div>
             );
@@ -53,7 +80,7 @@ class Topics extends Component {
 }
 
 Topics.PropTypes = {
-    signIn: PropTypes.object.isRequired,
+    signIn: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {

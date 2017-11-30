@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './TopicItemStyle.scss';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Alert} from 'reactstrap';
+import {Alert, Card, CardBody, CardSubtitle, CardText, CardTitle, Col} from 'reactstrap';
 
 class TopicItem extends Component {
 
@@ -15,12 +15,15 @@ class TopicItem extends Component {
         let topicData = this.props.topicData;
         if (isAuthenticated) {
             return (
-                <div className='topicItem'>
-                    <h4>Topics:</h4>
-                    <p>{topicData.topic_name}</p>
-                    <p>{topicData.topic_text}</p>
-                    <span>{topicData.created_at}</span>
-                </div>
+                <Col xs='3' className='topicItem'>
+                    <Card>
+                        <CardBody>
+                            <CardTitle>{topicData.topic_name}</CardTitle>
+                            <CardSubtitle>{topicData.created_at}</CardSubtitle>
+                            <CardText>{topicData.topic_text}</CardText>
+                        </CardBody>
+                    </Card>
+                </Col>
             );
         } else {
             return(

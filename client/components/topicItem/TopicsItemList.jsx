@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './TopicItemStyle.scss';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Alert} from 'reactstrap';
+import {Alert, Row} from 'reactstrap';
 import TopicItem from './TopicItem';
 
 class TopicsItemList extends Component {
@@ -16,13 +16,13 @@ class TopicsItemList extends Component {
         const topicsData = this.props.topicsData;
         if (isAuthenticated) {
             return (
-                <div className='topicsList'>
+                <Row className='topicsList justify-content-center'>
                     {
                         topicsData.map((topicsData) => {// eslint-disable-line
                             return <TopicItem key={topicsData.id} topicData={topicsData} />// eslint-disable-line
                         })
                     }
-                </div>
+                </Row>
             );
         } else {
             return(
