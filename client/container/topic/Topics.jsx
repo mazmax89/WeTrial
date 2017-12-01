@@ -31,14 +31,16 @@ class Topics extends Component {
 
 
     initData() {
-        this.props.getAllTopics().then(
-            (data) => {
-                this.setState({topicsData: data.data.topic});
-            },
-            (data) => {
-                this.setState({errors: data.response.data, isLoading: false});
-            }
-        );
+        if (this.props.signIn.isAuthenticated) {
+            this.props.getAllTopics().then(
+                (data) => {
+                    this.setState({topicsData: data.data.topic});
+                },
+                (data) => {
+                    this.setState({errors: data.response.data, isLoading: false});
+                }
+            );
+        }
 
     }
 
