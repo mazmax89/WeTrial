@@ -19,7 +19,7 @@ class Topics extends Component {
             errors: {},
             modal: false
         };
-        this.initData();
+        this.getAll();
         this.toggle = this.toggle.bind(this);
     }
 
@@ -30,7 +30,7 @@ class Topics extends Component {
     }
 
 
-    initData() {
+    getAll() {
         if (this.props.signIn.isAuthenticated) {
             this.props.getAllTopics().then(
                 (data) => {
