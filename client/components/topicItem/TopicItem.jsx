@@ -3,6 +3,7 @@ import './TopicItemStyle.scss';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Alert, Card, CardBody, CardSubtitle, CardText, CardTitle, Col} from 'reactstrap';
+import Link from 'react-router-dom/es/Link';
 
 class TopicItem extends Component {
 
@@ -19,8 +20,12 @@ class TopicItem extends Component {
                     <Card>
                         <CardBody>
                             <CardTitle>{topicData.topic_name}</CardTitle>
-                            <CardSubtitle>{topicData.created_at}</CardSubtitle>
-                            <CardText>{topicData.topic_text}</CardText>
+                            <CardSubtitle>created by {this.props.signIn.user.username}</CardSubtitle>
+                            <CardText>
+                                <Link to={'topic/'+topicData.id}>
+                                    Open{topicData.id}
+                                </Link>
+                                </CardText>
                         </CardBody>
                     </Card>
                 </Col>
