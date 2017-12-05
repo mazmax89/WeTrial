@@ -30,6 +30,16 @@ router.get('/', (req, res) => {
     .catch((error) => res.status(500).json({error}));
 });
 
+router.get('/:identifier', (req, res) => {
+  Topic.where({id: req.params.identifier}).fetch().then((topic) => {
+    if (topic) {
+      res.json({ topic });
+    } else {
+      res.status(401).json({errors: {form: 'Topic is not found'}});
+    }
+  });
+});
+
 router.post('/', (req, res) => {
   validateInput(req.body.topicData, commonValidations).then(({errors, isValid}) => {
     if (isValid) {

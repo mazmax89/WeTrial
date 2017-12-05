@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {Alert, Col, Row} from 'reactstrap';
 import {addFlashMessage} from '../../actions/flashMessageAction';
 import {getTopicById} from '../../actions/topicsAction';
+import TopicMainBox from '../../components/topicMainBox/topicMainBox';
 
 class TopicMain extends Component {
 
@@ -13,11 +14,12 @@ class TopicMain extends Component {
             topicsData: [],
             errors: {}
         };
+        this.getById();
     }
 
     getById() {
         if (this.props.signIn.isAuthenticated) {
-            this.props.getTopicById('1').then(
+            this.props.getTopicById(this.props.match.params.id).then(
                 (data) => {
                     this.setState({topicsData: data.data.topic});
                 },
@@ -36,7 +38,7 @@ class TopicMain extends Component {
                 <div className='topicMainContainer'>
                     <Row>
                         <Col xs='12' className='topicMain'>
-                            <h1>Topic!!!!!</h1>
+                            <TopicMainBox topicData={this.state.topicsData}/>
                         </Col>
                     </Row>
                 </div>
