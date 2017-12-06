@@ -20,7 +20,7 @@ class TopicItem extends Component {
                     <Card>
                         <CardBody>
                             <CardTitle>{topicData.topic_name}</CardTitle>
-                            <CardSubtitle>created by {this.props.signIn.user.username}</CardSubtitle>
+                            <CardSubtitle>created by {this.props.signIn.user.username}</CardSubtitle> //TODO created by id=username
                             <CardText>
                                 <Link to={'topic/'+topicData.id}>
                                     Open{topicData.id}

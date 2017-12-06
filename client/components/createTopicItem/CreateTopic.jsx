@@ -74,7 +74,7 @@ class CreateTopic extends Component {
                                 type='text'
                             />
                             <textarea name='topicText' onChange={this.onChanged} placeholder='Topic text'
-                                      maxLength={255}/>
+                                      maxLength={65530}/>
                             {errors && <span className='warning'>{errors.topicText}</span>}
 
                             <ModalFooter>
