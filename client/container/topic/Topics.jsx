@@ -21,6 +21,7 @@ class Topics extends Component {
         };
         this.getAll();
         this.toggle = this.toggle.bind(this);
+        this.hasChanged = this.hasChanged().bind(this);
     }
 
     toggle() {
@@ -29,6 +30,9 @@ class Topics extends Component {
         });
     }
 
+    hasChanged() {
+        this.getAll()
+    }
 
     getAll() {
         if (this.props.signIn.isAuthenticated) {

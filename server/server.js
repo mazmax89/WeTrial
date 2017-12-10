@@ -8,9 +8,44 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../webpack.config');
 const isDev = process.env.NODE_ENV !== 'production';
+import MySQLEvents from 'mysql-events';
 import SignUp from './routes/signUp';
 import SignIn from './routes/signIn';
 import Topic from './routes/topics';
+
+const dsn = {
+  host:     '127.0.0.1',
+  user:     'root',
+  password: 'qq2w3e4r',
+};
+
+export function updateView(flag) {
+  if (flag) {
+  }
+}
+
+
+const mysqlEventWatcher = MySQLEvents(dsn);
+const watcher = mysqlEventWatcher.add(
+  'projectm.topics',
+  function (oldRow, newRow, event) {
+    //row inserted
+    if (oldRow === null) {
+      this.updateView(true);
+    }
+
+    //row deleted
+    if (newRow === null) {
+      console.log('topics deleted');
+    }
+
+    //row updated
+    if (oldRow !== null && newRow !== null) {
+      console.log('topics updated w');
+    }
+
+  },
+);
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
