@@ -22,7 +22,6 @@ class Home extends Component {
         return (
             <main className='homePage container-fluid'>
                 <div className='menu row justify-content-center'>
-                    <MenuItem to='' name='Home'/>
                     {menu}
                 </div>
             </main>

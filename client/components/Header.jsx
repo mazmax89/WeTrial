@@ -34,7 +34,7 @@ class Header extends Component {
         const menu = (
             isAuthenticated ?
                 [
-                    <NavLink key='topics' to='/topic' exact activeClassName='active'>Topics</NavLink>,
+                    <NavLink key='topics' to='/topic' exact >Topics</NavLink>,
                     <a key='logout' className='link'
                        href='#'
                        onClick={this.logout.bind(this)}>
@@ -42,8 +42,8 @@ class Header extends Component {
                     </a>
                 ]
                 : [
-                    <NavLink key='signup' to='/signup' exact activeClassName='active'>Sign Up</NavLink>,
-                    <NavLink key='signin' to='/signin' exact activeClassName='active'>Sign In</NavLink>
+                    <NavLink key='signup' to='/signup' exact >Sign Up</NavLink>,
+                    <NavLink key='signin' to='/signin' exact >Sign In</NavLink>
                 ]
         );
 
@@ -54,7 +54,7 @@ class Header extends Component {
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav navbar>
-                            <NavLink to='/' exact activeClassName='active'>Home</NavLink>
+                            <NavLink to='/' exact>Home</NavLink>
                             {menu}
                         </Nav>
                     </Collapse>

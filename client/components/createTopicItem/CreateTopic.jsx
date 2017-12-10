@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {Alert, Button, Form, FormGroup, ModalFooter} from 'reactstrap';
 import TextFieldGroup from '../common/TextFieldGroup';
 import validateInput from '../../../server/utils/validation/createTopic';
+import Redirect from 'react-router-dom/es/Redirect';
 
 class CreateTopic extends Component {
 
@@ -14,7 +15,8 @@ class CreateTopic extends Component {
             topicName: '',
             topicText: '',
             errors: {},
-            isLoading: false
+            isLoading: false,
+            redirect: false
         };
         this.onChanged = this.onChanged.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -61,6 +63,7 @@ class CreateTopic extends Component {
     render() {
         const {isAuthenticated} = this.props.signIn;
         const errors = this.state.errors;
+        const redirect = (this.state.redirect ? <Redirect push to='/'/> : null);
         if (isAuthenticated) {
             return (
                 <div className='createTopic'>
@@ -84,6 +87,7 @@ class CreateTopic extends Component {
                             </ModalFooter>
                         </FormGroup>
                     </Form>
+                    {redirect}
                 </div>
             );
         } else {
