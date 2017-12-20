@@ -1,7 +1,7 @@
 import './AppStyle.scss';
 import React, {Component} from 'react';
 import Route from 'react-router-dom/es/Route';
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 import Home from './Home';
 import SignUp from './SignUp';
 import {AnimatedSwitch} from 'react-router-transition';

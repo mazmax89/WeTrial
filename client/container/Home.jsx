@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import MenuItem from '../components/MenuItem';
 import './HomeStyle.scss';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,22 +6,11 @@ import PropTypes from 'prop-types';
 class Home extends Component {
 
     render() {
-        const {isAuthenticated} = this.props.signIn;
 
-        const menu = (
-            isAuthenticated ? [
-                <MenuItem key='topic' to='topic' name='Topics'/>,
-                ]
-                : [
-                    <MenuItem key='menuSignUp' to='signup' name='Sign Up'/>,
-                    <MenuItem key='menuSignIn' to='signin' name='Sign In'/>
-                ]
-
-        );
         return (
             <main className='homePage container-fluid'>
-                <div className='menu row justify-content-center'>
-                    {menu}
+                <div className='row justify-content-center'>
+
                 </div>
             </main>
         );

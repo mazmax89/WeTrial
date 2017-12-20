@@ -10,13 +10,11 @@ export function getAllTopics () {
   return dispatch => { // eslint-disable-line
     return axios.get('/api/topic')
   }
-
 }
 
 export function getTopicById (identifier) {
   return dispatch => { // eslint-disable-line
     return axios.get(`/api/topic/${identifier}`);
   }
-
 }
 

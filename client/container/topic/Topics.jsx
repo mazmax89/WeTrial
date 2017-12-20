@@ -21,17 +21,12 @@ class Topics extends Component {
         };
         this.getAll();
         this.toggle = this.toggle.bind(this);
-        this.hasChanged = this.hasChanged().bind(this);
     }
 
     toggle() {
         this.setState({
             modal: !this.state.modal
         });
-    }
-
-    hasChanged() {
-        this.getAll()
     }
 
     getAll() {

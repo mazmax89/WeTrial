@@ -4,7 +4,7 @@ import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav} from 'reactstrap';
 import './HeaderStyle.scss';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {signOutAction} from '../actions/sigInOutAction';
+import {signOutAction} from '../../actions/sigInOutAction';
 
 
 class Header extends Component {
@@ -34,27 +34,28 @@ class Header extends Component {
         const menu = (
             isAuthenticated ?
                 [
-                    <NavLink key='topics' to='/topic' exact >Topics</NavLink>,
-                    <a key='logout' className='link'
+                    <NavLink key='topics' to='/topic' >Topics</NavLink>,
+                    <a key='logout'
                        href='#'
                        onClick={this.logout.bind(this)}>
                         Logout
                     </a>
                 ]
                 : [
-                    <NavLink key='signup' to='/signup' exact >Sign Up</NavLink>,
-                    <NavLink key='signin' to='/signin' exact >Sign In</NavLink>
+                    <NavLink key='signup' to='/signup'>Sign Up</NavLink>,
+                    <NavLink key='signin' to='/signin'>Sign In</NavLink>
                 ]
+
         );
 
         return (
             <header>
-                <Navbar expand='md'>
-                    <NavbarBrand href='/'>Trial</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle}/>
+                <Navbar expand='md' color='faded' light>
+                    <NavbarBrand href='/' className='mr-auto'>WeTrial</NavbarBrand>
+                    <NavbarToggler onClick={this.toggle} className='mr-2'/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav navbar>
-                            <NavLink to='/' exact>Home</NavLink>
+                            <NavLink to='/'>Home</NavLink>
                             {menu}
                         </Nav>
                     </Collapse>
