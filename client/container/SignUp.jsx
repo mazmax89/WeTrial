@@ -1,9 +1,10 @@
+import './SignUpStyle.scss';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import SignUpForm from '../components/SignUpForm';
-import {userSignUpRequest} from '../actions/signUpAction';
 import {addFlashMessage} from '../actions/flashMessageAction';
-import './SignUpStyle.scss';
+import {signUpAction} from '../actions/userActions';
+import bindActionCreators from 'redux/es/bindActionCreators';
 
 class SignUp extends Component {
     render() {
@@ -11,7 +12,7 @@ class SignUp extends Component {
             <div className='SignUp intro'>
                 <h1 className='heading'>WeTrial</h1>
                 <div className='verticalAlignBlock'>
-                    <SignUpForm userSignUpRequest={this.props.userSignUpRequest}
+                    <SignUpForm signUpAction={this.props.signUpAction}
                                 addFlashMessage={this.props.addFlashMessage}/>
                 </div>
             </div>
@@ -19,4 +20,11 @@ class SignUp extends Component {
     }
 }
 
-export default connect(null, {userSignUpRequest, addFlashMessage})(SignUp);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        signUpAction,
+        addFlashMessage,
+    }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SignUp);

@@ -1,11 +1,18 @@
 import {addFlashMessage} from './flashMessageAction';
 import {userSignUpRequest} from './signUpAction';
-import {signOutAction} from './sigInOutAction';
 import {signInAction} from './sigInOutAction';
+import {signOutAction} from './userActions';
 import {createTopicAction, getAllTopics, getTopicById} from './topicsAction';
 
 
 
 export default {
-  addFlashMessage, userSignUpRequest, signOutAction,signInAction, createTopicAction, getTopicById, getAllTopics,
+  signOutAction,
+  addFlashMessage,
+  userSignUpRequest,
+  signInAction,
+  createTopicAction,
+  getTopicById,
+  getAllTopics,
+
 };

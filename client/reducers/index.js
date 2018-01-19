@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
+import currentUser from './firebaseUser';
 import flashMessages from './flashMessages';
-import signIn from './signIn';
 
 export default combineReducers({
+  currentUser,
   flashMessages,
-  signIn,
 });

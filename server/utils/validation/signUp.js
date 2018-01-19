@@ -4,8 +4,8 @@ export default function validateInput(data) {
   let errors = {};
   let ifValid = false;
 
-  if (validator.isEmpty(data.username)) {
-    errors.username = 'Username is required';
+  if (validator.isEmpty(data.mail)) {
+    errors.mail = 'Username is required';
   }
   if (validator.isEmpty(data.firstPassword)) {
     errors.firstPassword = 'This field is required ';

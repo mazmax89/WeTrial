@@ -5,27 +5,28 @@ import validateInput from '../../../server/utils/validation/SignIn';
 import './SigInFormStyle.scss';
 import PropTypes from 'prop-types';
 import Redirect from 'react-router-dom/es/Redirect';
+import NavLink from 'react-router-dom/es/NavLink';
 
 class SignInForm extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      identifier: '',
+      mail: '',
       password: '',
       errors: {},
       isLoading: false,
-      form: null,
-      redirect: false,
+      redirect: false
     };
     this.onChanged = this.onChanged.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.loginWithProvider = this.loginWithProvider.bind(this);
   }
 
   onChanged(e) {
     let stateName = e.target.name;
-    if (stateName === 'identifier') {
-      this.setState({identifier: e.target.value});
+    if (stateName === 'mail') {
+      this.setState({mail: e.target.value});
     } else {
       this.setState({password: e.target.value});
     }
@@ -41,11 +42,13 @@ class SignInForm extends Component {
     return isValid;
   }
 
-  onSubmit(e) {
+  onFormSubmit(e) {
     e.preventDefault();
     if (this.isValid()) {
       this.setState({errors: {}, isLoading: true});
-      this.props.signInAction(this.state).then(
+      const email = this.state.mail;
+      const password = this.state.password;
+      this.props.signInAction({email, password}).then(
         (res) => { // eslint-disable-line
           this.props.addFlashMessage({
             type: 'success',
@@ -54,28 +57,36 @@ class SignInForm extends Component {
           this.setState({redirect: true});
         },
         (data) => {
-          this.setState({errors: data.response.data, isLoading: false});
-        },
+          this.setState({errors: data.message, isLoading: false});
+        }
       );
     }
   }
 
+  loginWithProvider(provider) {// eslint-disable-line
+    /*this.props.loginWithProvider(provider).then((data) => {
+      if (data.payload.errorCode) {
+        this.setState({message: data.payload.errorMessage});
+      }
+    });*/
+  }
+
   render() {
     const errors = this.state.errors;
-    const redirect = (this.state.redirect? <Redirect push to='/'/> : null);
+    const redirect = (this.state.redirect ? <Redirect push to='/'/> : null);
     return (
-      <Form onSubmit={this.onSubmit}>
+      <Form onSubmit={this.onFormSubmit}>
         <div className='title'>
           <h1>Sign in</h1>
         </div>
         <div className='warning'>{errors.errors ? errors.errors.form : null}</div>
         <FormGroup className='formGroup'>
           <TextFieldGroup
-            error={errors.identifier}
-            label='Username'
+            error={errors.mail}
+            label='Email'
             onChanged={this.onChanged}
-            field='identifier'
-            type='text'
+            field='mail'
+            type='email'
           />
           <TextFieldGroup
             error={errors.password}
@@ -84,10 +95,15 @@ class SignInForm extends Component {
             field='password'
             type='password'
           />
-          <Button disabled={this.state.isLoading} className='btnDefault' type='submit'>
+          <Button className='btnDefault' type='submit'>
             Sign In
           </Button>
         </FormGroup>
+        <h5><NavLink to='/reset'>Forgot password?</NavLink></h5>
+        <h4>Login with</h4>
+        <a
+          href='#' className='btn btn-block btn-social btn-google'
+          onClick={this.loginWithProvider('google')} data-provider='google'>Google</a>
         {redirect}
       </Form>
     );

@@ -4,22 +4,36 @@ import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav} from 'reactstrap';
 import './HeaderStyle.scss';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {signOutAction} from '../../actions/sigInOutAction';
+import bindActionCreators from 'redux/es/bindActionCreators';
+import {signOutAction} from '../../actions/userActions';
+import {addFlashMessage} from '../../actions/flashMessageAction';
 
 
 class Header extends Component {
 
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
+
         this.state = {
             isOpen: false
         };
+
+        this.toggle = this.toggle.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
-    logout(e) {
-        e.preventDefault();
-        this.props.signOutAction();
+    logOut() {
+        this.props.signOutAction().then(
+            (res) => { //eslint-disable-line
+                this.props.addFlashMessage({
+                    type: 'success',
+                    text: 'You signed out!'
+                });
+            },
+            (data) => {
+                console.log(data);
+            }
+        );
     }
 
     toggle() {
@@ -29,15 +43,16 @@ class Header extends Component {
     }
 
     render() {
-        const {isAuthenticated} = this.props.signIn;
+        const {isAuthenticated} = this.props.currentUser;
 
         const menu = (
             isAuthenticated ?
                 [
-                    <NavLink key='topics' to='/topic' >Topics</NavLink>,
+                    <NavLink key='topics' to='/topic'>Topics</NavLink>,
+                    <NavLink key='settings' to='/settings'>Settings</NavLink>,
                     <a key='logout'
                        href='#'
-                       onClick={this.logout.bind(this)}>
+                       onClick={this.logOut}>
                         Logout
                     </a>
                 ]
@@ -56,6 +71,7 @@ class Header extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav navbar>
                             <NavLink to='/'>Home</NavLink>
+                            {this.props.currentUser.displayName}
                             {menu}
                         </Nav>
                     </Collapse>
@@ -66,14 +82,18 @@ class Header extends Component {
 }
 
 Header.PropTypes = {
-    signIn: PropTypes.object.isRequired,
+    currentUser: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired
 };
 
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({signOutAction, addFlashMessage}, dispatch);
+}
+
 function mapStateToProps(state) {
     return {
-        signIn: state.signIn
+        currentUser: state.currentUser
     };
 }
 
-export default connect(mapStateToProps, {signOutAction})(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

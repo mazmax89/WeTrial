@@ -16,7 +16,7 @@ class FlashMessage extends Component {
 
   render() {
     return (
-      <Alert className='FlashMessageContainer' color='success'>
+      <Alert className='FlashMessageContainer' color={this.props.message.type}>
         {this.props.message.text}
         <a onClick={this.onClick} className='closeFlashMessage'>
           <i className='fa fa-window-close closeFlashMessage' aria-hidden='true'> </i>
