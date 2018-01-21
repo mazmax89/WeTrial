@@ -10,7 +10,7 @@ import Topics from './topic/Topics';
 import TopicMain from './topicMain/TopicMain';
 import UserRegister from './user/register';
 import UserSettings from '../components/userSettings/UserSettings';
-import ResetPassword from '../components/resetPassword/ResetPassword';
+import ResetPasswordForm from '../components/resetPassword/ResetPasswordForm';
 import FlashMessagesList from '../components/common/FlashMessagesList';
 import Header from '../components/header/Header';
 
@@ -33,7 +33,7 @@ export default class App extends Component {
                     <Route path={'/topic/:id'} component={TopicMain}/>
                     <Route path='/topic' component={Topics}/>
                     <Route path='/register' component={UserRegister}/>
-                    <Route path='/reset' component={ResetPassword}/>
+                    <Route path='/reset' component={ResetPasswordForm}/>
                 </AnimatedSwitch>
                 <Footer/>
             </div>

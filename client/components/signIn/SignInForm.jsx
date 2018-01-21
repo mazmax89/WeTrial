@@ -54,7 +54,7 @@ class SignInForm extends Component {
 						type: 'success',
 						text: 'You signed in successfully. Welcome!'
 					});
-					this.setState({redirect: true});
+					this.setState({redirect: true, isLoading: false});
 				},
 				(data) => {
 					this.setState({errors: data.message, isLoading: false});

@@ -1,7 +1,6 @@
 import FireBaseTools from '../firebase/firebase';
 import {
   CHANGE_FIREBASE_USER_PASSWORD,
-  FIREBASE_PASSWORD_RESET_EMAIL,
   SET_CURRENT_USER
 } from '../actions/types';
 import {isEmpty} from 'lodash';
@@ -22,9 +21,6 @@ export default function (state = initialState, action) {
     case CHANGE_FIREBASE_USER_PASSWORD:
       return changePassword(action.newPassword);
 
-    case FIREBASE_PASSWORD_RESET_EMAIL:
-      return resetPasswordEmail(action.email);
-
     default:
       return state;
 
@@ -39,6 +35,3 @@ function changePassword(newPassword) {
   FireBaseTools.changePassword(newPassword);
 }
 
-function resetPasswordEmail(email) {
-  FireBaseTools.resetPasswordEmail(email);
-}
