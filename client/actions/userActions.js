@@ -1,5 +1,4 @@
 import {
-  LOGIN_WITH_PROVIDER_FIREBASE,
   CHANGE_FIREBASE_USER_PASSWORD,
   FIREBASE_PASSWORD_RESET_EMAIL,
   SET_CURRENT_USER
@@ -17,6 +16,14 @@ export function signInAction(user) {
   return dispatch => {
     return FireBaseTools.loginUser(user).then(user => {
       dispatch(setCurrentUser(user));
+    });
+  };
+}
+
+export function signInWithProviderAction(provider) {
+  return dispatch => {
+    return FireBaseTools.loginWithProvider(provider).then(user => {
+      dispatch(setCurrentUser(user.user));
     });
   };
 }
@@ -41,16 +48,12 @@ export function signUpAction(user) {
   return dispatch => { // eslint-disable-line
     return FireBaseTools.registerUser(user);
   };
-
 }
+
+
 
 //TODO do this normal
-export function loginWithProvider(provider) {
-  return {
-    type: LOGIN_WITH_PROVIDER_FIREBASE,
-    provider
-  };
-}
+
 
 
 export function changePassword(newPassword) {

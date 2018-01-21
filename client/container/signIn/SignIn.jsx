@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './SignInStyle.scss';
 import SignInForm from '../../components/signIn/SignInForm';
-import {signInAction} from '../../actions/userActions';
+import {signInAction, signInWithProviderAction} from '../../actions/userActions';
 import {connect} from 'react-redux';
 import {addFlashMessage} from '../../actions/flashMessageAction';
 
@@ -12,11 +12,11 @@ class SignIn extends Component {
       <div className='intro'>
         <h1 className='heading'>WeTrial</h1>
         <div className='verticalAlignBlock'>
-          <SignInForm signInAction={this.props.signInAction} addFlashMessage={this.props.addFlashMessage}/>
+          <SignInForm signInAction={this.props.signInAction} signInWithProviderAction={this.props.signInWithProviderAction} addFlashMessage={this.props.addFlashMessage}/>
         </div>
       </div>
     );
   }
 }
 
-export default  connect(null, {signInAction, addFlashMessage})(SignIn);
+export default  connect(null, {signInAction, signInWithProviderAction, addFlashMessage})(SignIn);

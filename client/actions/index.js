@@ -1,7 +1,7 @@
 import {addFlashMessage} from './flashMessageAction';
 import {userSignUpRequest} from './signUpAction';
 import {signInAction} from './sigInOutAction';
-import {signOutAction} from './userActions';
+import {signInWithProviderAction, signOutAction} from './userActions';
 import {createTopicAction, getAllTopics, getTopicById} from './topicsAction';
 
 
@@ -14,5 +14,5 @@ export default {
   createTopicAction,
   getTopicById,
   getAllTopics,
-
+  signInWithProviderAction
 };

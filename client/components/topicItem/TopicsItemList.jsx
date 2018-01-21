@@ -12,7 +12,7 @@ class TopicsItemList extends Component {
     }
 
     render() {
-        const {isAuthenticated} = this.props.signIn;
+        const {isAuthenticated} = this.props.currentUser;
         const topicsData = this.props.topicsData;
         if (isAuthenticated) {
             return (
@@ -35,12 +35,12 @@ class TopicsItemList extends Component {
 }
 
 TopicsItemList.PropTypes = {
-    signIn: PropTypes.object.isRequired
+	currentUser: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        signIn: state.signIn
+		currentUser: state.currentUser
     };
 }
 

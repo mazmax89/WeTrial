@@ -12,7 +12,7 @@ class TopicItem extends Component {
     }
 
     render() {
-        const {isAuthenticated} = this.props.signIn;
+        const {isAuthenticated} = this.props.currentUser;
         let topicData = this.props.topicData;
         if (isAuthenticated) {
             return (
@@ -20,7 +20,7 @@ class TopicItem extends Component {
                     <Card>
                         <CardBody>
                             <CardTitle>{topicData.topic_name}</CardTitle>
-                            <CardSubtitle>created by {this.props.signIn.user.username}</CardSubtitle> {/*TODO created by id=username*/}
+                            <CardSubtitle>created by {this.props.currentUser.user.username}</CardSubtitle> {/*TODO created by id=username*/}
                             <CardText>
                                 <Link to={'topic/'+topicData.id}>
                                     Open{topicData.id}
@@ -41,12 +41,12 @@ class TopicItem extends Component {
 }
 
 TopicItem.PropTypes = {
-    signIn: PropTypes.object.isRequired
+	currentUser: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) { //TODO remove from here
     return {
-        signIn: state.signIn
+		currentUser: state.currentUser
     };
 }
 
