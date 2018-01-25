@@ -6,6 +6,7 @@ import Loading from '../helpers/loading';
 import ChangePassword from '../changePassword/ChangePassword';
 import {Alert} from 'reactstrap';
 import {addFlashMessage} from '../../actions/flashMessageAction';
+import PropTypes from 'prop-types';
 
 class UserSettings extends Component {
 
@@ -76,6 +77,11 @@ class UserSettings extends Component {
 
 }
 
+UserSettings.propTypes = {
+	updateUser: PropTypes.func.isRequired,
+	addFlashMessage: PropTypes.func.isRequired,
+	currentUser: PropTypes.object.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({updateUser, addFlashMessage}, dispatch);

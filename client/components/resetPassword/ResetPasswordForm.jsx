@@ -4,12 +4,15 @@ import {bindActionCreators} from 'redux';
 import {resetPasswordEmail} from '../../actions/userActions';
 import {addFlashMessage} from '../../actions/flashMessageAction';
 import PropTypes from 'prop-types';
+import Redirect from 'react-router-dom/es/Redirect';
 
 class ResetPasswordForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			errors: {},
+			redirect: false,
+			isLoading: false,
 		};
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
@@ -19,13 +22,12 @@ class ResetPasswordForm extends Component {
 		this.setState({errors: {}, isLoading: true});
 		const email = this.refs.email.value;
 		this.props.resetPasswordEmail(email).then(
-			(res) => { // eslint-disable-line
-				console.log('res', res);
+			(res) => {
 				if (res.errorMessage) {
 					this.setState({errors: res.errorMessage, isLoading: false});
 					this.props.addFlashMessage({
-						type: 'success',
-						text: {errors}
+						type: 'danger',
+						text: res.errorMessage,
 					});
 				} else {
 					this.props.addFlashMessage({
@@ -36,14 +38,11 @@ class ResetPasswordForm extends Component {
 				}
 
 			},
-			(data) => {
-				console.log(data);
-				this.setState({errors: data.message, isLoading: false});
-			}
-			);
+		);
 	}
 
 	render() {
+		const redirect = (this.state.redirect ? <Redirect push to='/signin'/> : null);
 		return (
 			<div className='col-md-4'>
 				<form role='form' onSubmit={this.onFormSubmit}>
@@ -56,8 +55,8 @@ class ResetPasswordForm extends Component {
 					</div>
 					<button type='submit' className='btn btn-default btn-block'>Reset Password</button>
 				</form>
+				{redirect}
 			</div>
-
 		);
 	}
 }

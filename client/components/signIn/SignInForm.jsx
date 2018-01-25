@@ -49,7 +49,7 @@ class SignInForm extends Component {
 			const email = this.state.mail;
 			const password = this.state.password;
 			this.props.signInAction({email, password}).then(
-				(res) => { // eslint-disable-line
+				(res) => {
 					this.props.addFlashMessage({
 						type: 'success',
 						text: 'You signed in successfully. Welcome!'
@@ -57,7 +57,13 @@ class SignInForm extends Component {
 					this.setState({redirect: true, isLoading: false});
 				},
 				(data) => {
-					this.setState({errors: data.message, isLoading: false});
+					if (data) {
+						this.props.addFlashMessage({
+							type: 'danger',
+							text: data.message,
+						});
+						this.setState({isLoading: false});
+					}
 				}
 			);
 		}

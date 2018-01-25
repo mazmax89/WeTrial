@@ -83,7 +83,7 @@ class Header extends Component {
 
 Header.PropTypes = {
     currentUser: PropTypes.object.isRequired,
-    logout: PropTypes.func.isRequired
+	signOutAction   : PropTypes.func.isRequired
 };
 
 function mapDispatchToProps(dispatch) {

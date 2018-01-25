@@ -14,6 +14,10 @@ class FlashMessage extends Component {
     this.props.deleteFlashMessage(this.props.message.id);
   }
 
+  componentDidMount() {
+    setTimeout(() => {this.props.deleteFlashMessage(this.props.message.id)}, 6000);
+  }
+
   render() {
     return (
       <Alert className='FlashMessageContainer' color={this.props.message.type}>

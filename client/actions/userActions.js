@@ -1,5 +1,4 @@
 import {
-  CHANGE_FIREBASE_USER_PASSWORD,
   SET_CURRENT_USER
 } from './types';
 import FireBaseTools from '../firebase/firebase';
@@ -55,13 +54,10 @@ export function resetPasswordEmail(email) {
   }
 }
 
-//TODO do this normal
-
 export function changePassword(newPassword) {
-  return {
-    type: CHANGE_FIREBASE_USER_PASSWORD,
-    newPassword
-  };
+  return dispatch => { // eslint-disable-line
+    return   FireBaseTools.changePassword(newPassword);
+  }
 }
 
 

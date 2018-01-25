@@ -1,6 +1,5 @@
 import FireBaseTools from '../firebase/firebase';
 import {
-  CHANGE_FIREBASE_USER_PASSWORD,
   SET_CURRENT_USER
 } from '../actions/types';
 import {isEmpty} from 'lodash';
@@ -18,20 +17,13 @@ export default function (state = initialState, action) {
         user: action.user
       };
 
-    case CHANGE_FIREBASE_USER_PASSWORD:
-      return changePassword(action.newPassword);
-
     default:
       return state;
 
   }
 }
 
-function fetchUser() { // eslint-disable-line
+function fetchUser() {  //eslint-disable-line
   FireBaseTools.fetchUser();
-}
-
-function changePassword(newPassword) {
-  FireBaseTools.changePassword(newPassword);
 }
 
