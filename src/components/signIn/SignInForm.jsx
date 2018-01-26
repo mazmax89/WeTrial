@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup} from 'reactstrap';
 import TextFieldGroup from '../common/TextFieldGroup';
-import validateInput from '../../../server/utils/validation/SignIn';
+import validateInput from '../../utils/validation/SignIn';
 import './SigInFormStyle.scss';
 import PropTypes from 'prop-types';
 import Redirect from 'react-router-dom/es/Redirect';
@@ -89,7 +89,7 @@ class SignInForm extends Component {
 		const errors = this.state.errors;
 		const redirect = (this.state.redirect ? <Redirect push to='/'/> : null);
 		return (
-			<div>
+			<div className='signInForm'>
 				<Form onSubmit={this.onFormSubmit}>
 					<div className='title'>
 						<h1>Sign in</h1>

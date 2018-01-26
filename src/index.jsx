@@ -5,15 +5,13 @@ import {Provider} from 'react-redux';
 import store from './store/index';
 import BrowserRouter from 'react-router-dom/es/BrowserRouter';
 import App from './container/App';
-import {setCurrentUser} from './actions/sigInOutAction';
-import setAuthorizationToken from '../server/utils/setAuthorizationToken';
+import {setCurrentUser} from './actions/userActions';
 
 const DefaultStore = store();
 
 const key = Object.keys(localStorage).find(e => e.match(/firebase:authUser/));
 const data = JSON.parse(localStorage.getItem(key));
 if (data) {
-    setAuthorizationToken(key);
     DefaultStore.dispatch(setCurrentUser(data));
 }
 

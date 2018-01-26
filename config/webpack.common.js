@@ -10,19 +10,17 @@ const isProd = NODE_ENV === 'production';
 module.exports = {
   output: {
     path: helpers.root('build'),
-    publicPath: '/'
   },
 
   resolve: {
     alias: {
-      'app': 'client/'
+      'app': helpers.root('src')
     },
     extensions: ['.webpack.js', '.web.js', '.js', '.jsx', '.scss', '.html']
   },
 
   module: {
     rules: [
-      // JS files
       {
         enforce: 'pre',
         test: /\.jsx?$/,
@@ -31,15 +29,13 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-        include: helpers.root('client'),
+        include: helpers.root('src'),
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
           plugins: ['react-hot-loader/babel']
         }
       },
-
-      // SCSS files
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
@@ -81,7 +77,7 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      template: helpers.root('client/index.html'),
+      template: helpers.root('public/index.html'),
       inject: 'body'
     }),
 

@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Alert, Button, Form, FormGroup, ModalFooter} from 'reactstrap';
 import TextFieldGroup from '../common/TextFieldGroup';
-import validateInput from '../../../server/utils/validation/createTopic';
 import Redirect from 'react-router-dom/es/Redirect';
 
 class CreateTopic extends Component {

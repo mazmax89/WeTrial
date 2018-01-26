@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup} from 'reactstrap';
-import validateInput from '../../server/utils/validation/signUp';
+import validateInput from '../utils/validation/signUp';
 import TextFieldGroup from './common/TextFieldGroup';
 import './SignUpFormStyle.scss';
 import PropTypes from 'prop-types';

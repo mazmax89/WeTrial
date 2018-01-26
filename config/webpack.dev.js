@@ -9,8 +9,7 @@ module.exports = merge(commonConfig, {
   entry: {
     'app': [
       'react-hot-loader/patch',
-      'webpack-hot-middleware/client',
-      helpers.root('client/index')
+      helpers.root('src/index')
     ]
   },
 

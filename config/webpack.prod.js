@@ -1,14 +1,14 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const helpers = require('./helpers');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const commonConfig = require('./webpack.common');
 
 module.exports = merge(commonConfig, {
   entry: {
     'app': [
-      helpers.root('client/index')
+      helpers.root('src/index')
     ]
   },
 
