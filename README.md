@@ -2,7 +2,7 @@
 
 This is project using the following technologies:
 - [React](https://facebook.github.io/react/) and [React Router](https://reacttraining.com/react-router/) for the frontend
-- [FireBase] FireHost, Fire
+- [FireBase] FireHost, FireAuth.
 - [Sass](http://sass-lang.com/) for styles (using the SCSS syntax)
 - [Webpack](https://webpack.github.io/) for compilation
 
@@ -21,12 +21,12 @@ npm install
 Development (Webpack dev server) mode:
 
 ```shell
-npm run start
+npm run start:dev
 ```
 
 Production mode:
 
 ```shell
-npm run stat:prod
+npm run build
 ```
 
