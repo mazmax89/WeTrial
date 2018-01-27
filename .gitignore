@@ -4,7 +4,7 @@
 .idea
 
 # Config file
-config/config.js
+src/firebase/config.js
 
 # Node stuff
 node_modules
