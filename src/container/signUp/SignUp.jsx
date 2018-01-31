@@ -1,9 +1,9 @@
 import './SignUpStyle.scss';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import SignUpForm from '../components/SignUpForm';
-import {addFlashMessage} from '../actions/flashMessageAction';
-import {signUpAction} from '../actions/userActions';
+import SignUpForm from '../../components/SignUpForm';
+import {addFlashMessage} from '../../actions/flashMessageAction';
+import {signUpAction} from '../../actions/userActions';
 import bindActionCreators from 'redux/es/bindActionCreators';
 
 class SignUp extends Component {

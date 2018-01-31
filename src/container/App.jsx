@@ -1,8 +1,8 @@
 import './AppStyle.scss';
 import React, {Component} from 'react';
 import Route from 'react-router-dom/es/Route';
-import Home from './Home';
-import SignUp from './SignUp';
+import Home from './home/Home';
+import SignUp from './signUp/SignUp';
 import {AnimatedSwitch} from 'react-router-transition';
 import Footer from '../components/Footer';
 import SignIn from './signIn/SignIn';
@@ -13,6 +13,7 @@ import UserSettings from '../components/userSettings/UserSettings';
 import ResetPasswordForm from '../components/resetPassword/ResetPasswordForm';
 import FlashMessagesList from '../components/common/FlashMessagesList';
 import Header from '../components/header/Header';
+import Chat from './chat/Chat';
 
 export default class App extends Component {
 
@@ -27,6 +28,7 @@ export default class App extends Component {
                     atActive={{marginLeft: 0, opacity: 1}}
                     className='switch-wrapper'>
                     <Route path='/' exact component={Home}/>
+                    <Route path='/chat' component={Chat}/>
                     <Route path='/signup' component={SignUp}/>
                     <Route path='/signin' component={SignIn}/>
                     <Route path='/settings' component={UserSettings}/>

@@ -1,12 +1,21 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import FireBaseTools from '../firebase/firebase';
+import FireBaseTools from '../../firebase/firebase';
 
 class Home extends Component {
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			message: '',
+		};
+	}
+
 	read() {
 		FireBaseTools.getDatabaseReference('/DongerMaster').once('value').then(snapshot => {
-			console.log(snapshot.val());
+			this.setState({
+				message: snapshot.val()
+			});
 		});
 	}
 
@@ -17,7 +26,7 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<button onClick={() => this.read()}>READ!</button>
+				<p>{this.state.message}</p>
 				<span>or</span>
 				<button onClick={() => this.write()}>WRITE!</button>
 			</div>
