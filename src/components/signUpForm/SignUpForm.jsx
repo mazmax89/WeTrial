@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup} from 'reactstrap';
-import validateInput from '../utils/validation/signUp';
-import TextFieldGroup from './common/TextFieldGroup';
+import validateInput from '../../utils/validation/signUp';
+import TextFieldGroup from '../common/TextFieldGroup';
 import './SignUpFormStyle.scss';
 import PropTypes from 'prop-types';
 import Redirect from 'react-router-dom/es/Redirect';

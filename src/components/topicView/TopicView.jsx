@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Col, Container} from 'reactstrap';
-import './TopicMainBoxStyle.scss';
+import './topicViewStyle.scss';
 
 class TopicMainBox extends Component {
 

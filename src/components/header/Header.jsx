@@ -82,7 +82,7 @@ class Header extends Component {
 	}
 }
 
-Header.PropTypes = {
+Header.propTypes = {
 	currentUser: PropTypes.object.isRequired,
 	signOutAction: PropTypes.func.isRequired
 };

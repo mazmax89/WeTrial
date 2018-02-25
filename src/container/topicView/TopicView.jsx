@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Alert, Col, Row} from 'reactstrap';
 import {addFlashMessage} from '../../actions/flashMessageAction';
-import {getTopicById} from '../../actions/topicsAction';
-import TopicMainBox from '../../components/topicMainBox/TopicMainBox';
+import {getTopicById} from '../../actions/topicAction';
+import TopicMainBox from '../../components/topicView/TopicView';
 
 class TopicMain extends Component {
 
@@ -53,7 +53,7 @@ class TopicMain extends Component {
     }
 }
 
-TopicMain.PropTypes = {
+TopicMain.propTypes = {
     signIn: PropTypes.object.isRequired
 };
 

@@ -1,41 +1,19 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import FireBaseTools from '../../firebase/firebase';
+import {NavLink} from 'react-router-dom';
 
-class Home extends Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			message: '',
-		};
-	}
-
-	read() {
-		FireBaseTools.getDatabaseReference('/DongerMaster').once('value').then(snapshot => {
-			this.setState({
-				message: snapshot.val()
-			});
-		});
-	}
-
-	write() {
-		FireBaseTools.getDatabaseReference('/').set({DongerMaster: 'eee'});
-	}
+export default class Home extends Component {
 
 	render() {
 		return (
 			<div>
-				<p>{this.state.message}</p>
-				<span>or</span>
-				<button onClick={() => this.write()}>WRITE!</button>
+				<NavLink key='topics' to='/topic'>Topics</NavLink>
+				<br/>
+				<NavLink key='chat' to='/chat'>Chat</NavLink>
+				<br/>
+				<NavLink key='settings' to='/settings'>Settings</NavLink>
 			</div>
 		);
 	}
 }
 
-function mapStateToProps(state) {
-	return {currentUser: state.currentUser};
-}
 
-export default connect(mapStateToProps, null)(Home);

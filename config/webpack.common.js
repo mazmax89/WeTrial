@@ -68,7 +68,6 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
 
     new webpack.DefinePlugin({
       'process.env': {
