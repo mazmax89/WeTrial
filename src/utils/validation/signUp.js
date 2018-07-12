@@ -5,7 +5,7 @@ export default function validateInput(data) {
   let ifValid = false;
 
   if (validator.isEmpty(data.mail)) {
-    errors.mail = 'Username is required';
+    errors.mail = 'Mail is required';
   }
   if (validator.isEmpty(data.firstPassword)) {
     errors.firstPassword = 'This field is required ';
@@ -13,7 +13,7 @@ export default function validateInput(data) {
   if (validator.isEmpty(data.confirmPassword)) {
     errors.confirmPassword = 'This field is required ';
   }
-  if (!validator.equals(data.firstPassword, data.confirmPassword)) {
+  if (!validator.isEmpty(data.firstPassword) && !validator.isEmpty(data.confirmPassword) && !validator.equals(data.firstPassword, data.confirmPassword)) {
     errors.confirmPassword = 'Password must match';
   }
 

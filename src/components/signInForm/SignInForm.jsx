@@ -72,22 +72,21 @@ class SignInForm extends Component {
 	signInWithProvider() {
 		let provider = 'google';
 		this.props.signInWithProviderAction(provider).then(
-			(res) => { // eslint-disable-line
+			(res) => {
 				this.props.addFlashMessage({
 					type: 'success',
 					text: 'You signed in successfully. Welcome!'
 				});
-				this.setState({redirect: true});
+				this.setState({redirect: true, isLoading: false});
 			},
 			(data) => {
-				console.log(data);
 				this.setState({errors: data.message, isLoading: false});
 			});
 	}
 
 	render() {
 		const errors = this.state.errors;
-		const redirect = (this.state.redirect ? <Redirect push to='/'/> : null);
+		if  (this.state.redirect === true ) return ( <Redirect push to='/'/>);
 		return (
 			<div className='signInForm'>
 				<Form onSubmit={this.onFormSubmit}>
@@ -117,12 +116,10 @@ class SignInForm extends Component {
 					<h5><NavLink to='/reset'>Forgot password?</NavLink></h5>
 					<h4>Login with</h4>
 				</Form>
-
 				<button
 					className='btn btn-block btn-social btn-google'
 					onClick={this.signInWithProvider}>Google
 				</button>
-				{redirect}
 			</div>
 		);
 	}

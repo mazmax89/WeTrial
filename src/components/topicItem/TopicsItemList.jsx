@@ -11,7 +11,6 @@ class TopicsItemList extends Component {
 	}
 
 	render() {
-
 		const topicsData = this.props.topicsData;
 		return (
 			<Row className='topicsList justify-content-center'>

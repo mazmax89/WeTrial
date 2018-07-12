@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import bindActionCreators from 'redux/es/bindActionCreators';
 import {signOutAction} from '../../actions/userActions';
 import {addFlashMessage} from '../../actions/flashMessageAction';
+import Redirect from 'react-router-dom/es/Redirect';
 
 
 class Header extends Component {
@@ -15,7 +16,7 @@ class Header extends Component {
 		super(props);
 
 		this.state = {
-			isOpen: false
+			isOpen: false,
 		};
 
 		this.toggle = this.toggle.bind(this);
@@ -44,7 +45,6 @@ class Header extends Component {
 
 	render() {
 		const {isAuthenticated} = this.props.currentUser;
-
 		const menu = (
 			isAuthenticated ?
 				[

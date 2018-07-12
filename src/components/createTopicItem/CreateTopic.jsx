@@ -18,8 +18,7 @@ export default class CreateTopic extends Component {
 			topicText: '',
 			errors: {},
 			isLoading: false,
-			modal: false,
-			redirect: false
+			modal: false
 		};
 		this.onChanged = this.onChanged.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
@@ -63,7 +62,7 @@ export default class CreateTopic extends Component {
 						type: 'success',
 						text: 'Topic created!'
 					});
-					this.setState({redirect: true});
+					this.setState({modal: false});
 				}, (data) => {
 					this.setState({errors: data.response.data, isLoading: false});
 				}
@@ -74,7 +73,6 @@ export default class CreateTopic extends Component {
 	render() {
 		const {isAuthenticated} = this.props.currentUser;
 		const errors = this.state.errors;
-		const redirect = (this.state.redirect ? <Redirect push to='/'/> : null);
 		if (isAuthenticated) {
 			return (
 				<Card>
@@ -117,7 +115,6 @@ export default class CreateTopic extends Component {
 							</ModalBody>
 						</Modal>
 					</CardBody>
-					{redirect}
 				</Card>
 			);
 		} else {

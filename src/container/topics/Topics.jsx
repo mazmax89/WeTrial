@@ -13,7 +13,6 @@ class Topics extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			topicsData: [],
 			errors: {},
 			isLoading: false
 		};
@@ -26,23 +25,8 @@ class Topics extends Component {
 
 	getAll() {
 		if (this.props.currentUser.isAuthenticated) {
-			this.setState({isLoading: true});
-			this.props.getAllTopics().then(
-				(res) => {
-					let snapData = res.val();
-					let topicsData = [];
-					for (let key in snapData ){
-						topicsData.push(snapData[key]);
-					}
-					if (topicsData) {
-						this.setState({topicsData: topicsData, isLoading: false});
-					} else {
-						this.setState({errors: 'No topics to show', isLoading: false});
-					}
-				}
-			);
+			this.props.getAllTopics();
 		}
-
 	}
 
 	render() {
@@ -53,7 +37,7 @@ class Topics extends Component {
 				<CreateTopic addFlashMessage={this.props.addFlashMessage}
 								 createTopicAction={this.props.createTopicAction}
 								 currentUser={this.props.currentUser}/>
-						<TopicsItemList topicsData={this.state.topicsData}/>
+						<TopicsItemList topicsData={this.props.topicsData}/>
 				</div>
 			);
 		} else {
@@ -68,7 +52,8 @@ class Topics extends Component {
 
 function mapStateToProps(state) {
 	return {
-		currentUser: state.currentUser
+		currentUser: state.currentUser,
+		topicsData: state.topics
 	};
 }
 
