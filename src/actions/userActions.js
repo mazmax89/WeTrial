@@ -4,20 +4,35 @@ import {
 } from './types';
 import FireBaseTools from '../firebase/firebase';
 
-export function setCurrentUser(user) {
+export function setCurrentUser(user, secondUserData) {
   return {
     type: SET_CURRENT_USER,
-    user
+    user, secondUserData
+  };
+}
+
+export function combineUserDataAndSet(user) {
+  let secondUserData = {};
+  return dispatch => {
+    return FireBaseTools.getDatabaseReference('users/' + user.uid).once('value', (snapshot) => {
+      let data = snapshot.val();
+      secondUserData = {
+        aboutUser: data.aboutUser,
+        dateOfBirth: data.dateOfBirth
+      };
+      dispatch(setCurrentUser(user, secondUserData));
+    });
   };
 }
 
 export function signInAction(user) {
   return dispatch => {
     return FireBaseTools.loginUser(user).then(user => {
-      dispatch(setCurrentUser(user));
+      dispatch(combineUserDataAndSet(user));
     });
   };
 }
+
 
 export function signInWithProviderAction(provider) {
   return dispatch => {
@@ -33,10 +48,13 @@ export function signInWithProviderAction(provider) {
           providerData: user.user.providerData,
           lastLoginAt: user.user.metadata.lastSignInTime,
           createdAt: user.user.metadata.creationTime,
+          stars: 0,
+          aboutUser: '',
+          dateOfBirth: '',
+          friends: [],
         });
-
       }
-      dispatch(setCurrentUser(user.user));
+      dispatch(combineUserDataAndSet(user.user));
     });
   };
 }
@@ -59,14 +77,24 @@ export function pushUserToDatabase(user) {
       providerData: user.providerData,
       lastLoginAt: user.metadata.lastSignInTime,
       createdAt: user.metadata.creationTime,
+      stars: 0,
+      aboutUser: '',
+      dateOfBirth: '',
+      friends: [],
     });
   }
 }
 
 export function updateUser(updatingData) {
+  let secondUserData = {
+    displayName: updatingData.displayName,
+    aboutUser: updatingData.aboutUser,
+    dateOfBirth: updatingData.dateOfBirth,
+  };
   return dispatch => {
     return FireBaseTools.updateUserProfile(updatingData).then(updatingData => {
-      dispatch(setCurrentUser(updatingData));
+      FireBaseTools.getDatabaseReference('users/' + updatingData.uid).update(secondUserData);
+      dispatch(combineUserDataAndSet(updatingData));
     });
   };
 }
@@ -74,7 +102,7 @@ export function updateUser(updatingData) {
 export function signOutAction() {
   return dispatch => {
     return FireBaseTools.logoutUser().then(data => { // eslint-disable-line
-      dispatch(setCurrentUser({}));
+      dispatch(setCurrentUser({},{}));
     });
   };
 }

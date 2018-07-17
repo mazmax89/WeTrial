@@ -53,13 +53,17 @@ class SignUpForm extends Component {
 			this.props.signUpAction({email, password}).then(
 				(res) => {
 					if (res.errorMessage) {
-						this.setState({isLoading: false, errors: res});
+						this.props.addFlashMessage({
+							type: 'danger',
+							text: res.errorMessage
+						});
+						this.setState({isLoading: false});
 					} else {
 						this.props.setCurrentUser(res);
 						this.props.pushUserToDatabase(res);
 						this.props.addFlashMessage({
 							type: 'success',
-							text: 'You signed up successfully. Welcome!'
+							text: 'You signed up successfully! Now you can sign in'
 						});
 						this.setState({redirect: true, isLoading: false});
 					}
@@ -114,8 +118,8 @@ class SignUpForm extends Component {
 }
 
 SignUpForm.propTypes = {
-	setCurrentUser: PropTypes.func.isRequired,
 	signUpAction: PropTypes.func.isRequired,
+	setCurrentUser: PropTypes.func.isRequired,
 	addFlashMessage: PropTypes.func.isRequired,
 	pushUserToDatabase: PropTypes.func.isRequired
 };

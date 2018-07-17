@@ -6,7 +6,11 @@ import {isEmpty} from 'lodash';
 
 const initialState = {
   isAuthenticated: false,
-  user: {}
+  user: {},
+  secondUserData: {
+    aboutUser: '',
+    dateOfBirth: ''
+  }
 };
 
 export default function (state = initialState, action) {
@@ -14,7 +18,8 @@ export default function (state = initialState, action) {
     case SET_CURRENT_USER:
       return {
         isAuthenticated: !isEmpty(action.user.uid),
-        user: action.user
+        user: action.user,
+        secondUserData:   (action.secondUserData? action.secondUserData : state.secondUserData)
       };
 
     default:
