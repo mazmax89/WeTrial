@@ -4,9 +4,7 @@ import TextFieldGroup from '../common/TextFieldGroup';
 import validateInput from '../../utils/validation/SignIn';
 import './SigInFormStyle.scss';
 import PropTypes from 'prop-types';
-import Redirect from 'react-router-dom/es/Redirect';
 import {NavLink} from 'react-router-dom';
-import {Loader} from 'react-loaders';
 
 class SignInForm extends Component {
 
@@ -16,8 +14,6 @@ class SignInForm extends Component {
 			mail: '',
 			password: '',
 			errors: {},
-			isLoading: false,
-			redirect: false
 		};
 		this.onChanged = this.onChanged.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -46,7 +42,8 @@ class SignInForm extends Component {
 	onFormSubmit(e) {
 		e.preventDefault();
 		if (this.isValid()) {
-			this.setState({errors: {}, isLoading: true});
+			this.props.onLoading(true);
+			this.setState({errors: {}});
 			const email = this.state.mail;
 			const password = this.state.password;
 			this.props.signInAction({email, password}).then(
@@ -55,7 +52,7 @@ class SignInForm extends Component {
 						type: 'success',
 						text: 'You signed in successfully. Welcome!'
 					});
-					this.setState({redirect: true, isLoading: false});
+					this.props.onLoading(false, true);
 				},
 				(data) => {
 					if (data) {
@@ -63,7 +60,7 @@ class SignInForm extends Component {
 							type: 'danger',
 							text: data.message,
 						});
-						this.setState({isLoading: false});
+						this.props.onLoading(false);
 					}
 				}
 			);
@@ -71,7 +68,8 @@ class SignInForm extends Component {
 	}
 
 	signInWithProvider() {
-		this.setState({errors: {}, isLoading: true});
+		this.props.onLoading(true);
+		this.setState({errors: {}});
 		let provider = 'google';
 		this.props.signInWithProviderAction(provider).then(
 			(res) => {
@@ -79,17 +77,16 @@ class SignInForm extends Component {
 					type: 'success',
 					text: 'You signed in successfully. Welcome!'
 				});
-				this.setState({redirect: true, isLoading: false});
+				this.props.onLoading(false, true);
 			},
 			(data) => {
-				this.setState({errors: data.message, isLoading: false});
+				this.setState({errors: data.message});
+				this.props.onLoading(false);
 			});
 	}
 
 	render() {
 		const errors = this.state.errors;
-		if (this.state.redirect === true) return (<Redirect push to='/'/>);
-		if (this.state.isLoading) return (<Loader type='line-scale' color={'#004e99'} active/>);
 		return (
 			<div className='signInForm'>
 				<Form onSubmit={this.onFormSubmit}>
@@ -129,6 +126,7 @@ class SignInForm extends Component {
 }
 
 SignInForm.propTypes = {
+	onLoading: PropTypes.func.isRequired,
 	signInAction: PropTypes.func.isRequired,
 	addFlashMessage: PropTypes.func.isRequired,
 	signInWithProviderAction: PropTypes.func.isRequired

@@ -4,19 +4,39 @@ import SignInForm from '../../components/signInForm/SignInForm';
 import {signInAction, signInWithProviderAction} from '../../actions/userActions';
 import {connect} from 'react-redux';
 import {addFlashMessage} from '../../actions/flashMessageAction';
+import {Loader} from 'react-loaders';
+import Redirect from 'react-router-dom/es/Redirect';
 
 class SignIn extends Component {
 
-  render() {
-    return (
-      <div className='intro'>
-        <h1 className='heading'>WeTrial</h1>
-        <div className='verticalAlignBlock'>
-          <SignInForm signInAction={this.props.signInAction} signInWithProviderAction={this.props.signInWithProviderAction} addFlashMessage={this.props.addFlashMessage}/>
-        </div>
-      </div>
-    );
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			isLoading: false,
+			redirect: false
+		};
+		this.onLoading = this.onLoading.bind(this);
+	}
+
+	onLoading(loading, redirect) {
+		this.setState({isLoading: loading, redirect: redirect});
+	}
+
+	render() {
+		if (this.state.isLoading) return (<Loader type='line-scale' color={'#004e99'} active/>);
+		if (this.state.redirect === true) return (<Redirect push to='/'/>);
+		return (
+			<div className='intro'>
+				<h1 className='heading'>WeTrial</h1>
+				<div className='verticalAlignBlock'>
+					<SignInForm onLoading = {this.onLoading.bind(this)}
+								signInAction={this.props.signInAction}
+								signInWithProviderAction={this.props.signInWithProviderAction}
+								addFlashMessage={this.props.addFlashMessage}/>
+				</div>
+			</div>
+		);
+	}
 }
 
-export default  connect(null, {signInAction, signInWithProviderAction, addFlashMessage})(SignIn);
+export default connect(null, {signInAction, signInWithProviderAction, addFlashMessage})(SignIn);
