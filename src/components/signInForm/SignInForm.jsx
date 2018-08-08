@@ -5,6 +5,7 @@ import validateInput from '../../utils/validation/SignIn';
 import './SigInFormStyle.scss';
 import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
+import Redirect from 'react-router-dom/es/Redirect';
 
 class SignInForm extends Component {
 
@@ -14,7 +15,9 @@ class SignInForm extends Component {
 			mail: '',
 			password: '',
 			errors: {},
-		};
+			redirect: false
+
+	};
 		this.onChanged = this.onChanged.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 		this.signInWithProvider = this.signInWithProvider.bind(this);
@@ -52,7 +55,9 @@ class SignInForm extends Component {
 						type: 'success',
 						text: 'You signed in successfully. Welcome!'
 					});
-					this.props.onLoading(false, true);
+					this.props.onLoading(false);
+					this.setState({redirect: true});
+
 				},
 				(data) => {
 					if (data) {
@@ -77,7 +82,8 @@ class SignInForm extends Component {
 					type: 'success',
 					text: 'You signed in successfully. Welcome!'
 				});
-				this.props.onLoading(false, true);
+				this.props.onLoading(false);
+				this.setState({redirect: true});
 			},
 			(data) => {
 				this.props.onLoading(false);
@@ -87,6 +93,7 @@ class SignInForm extends Component {
 
 	render() {
 		const errors = this.state.errors;
+		if (this.state.redirect === true) return (<Redirect push to='/'/>);
 		return (
 			<div className='signInForm'>
 				<Form onSubmit={this.onFormSubmit}>

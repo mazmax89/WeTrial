@@ -5,7 +5,6 @@ import {signInAction, signInWithProviderAction} from '../../actions/userActions'
 import {connect} from 'react-redux';
 import {addFlashMessage} from '../../actions/flashMessageAction';
 import {Loader} from 'react-loaders';
-import Redirect from 'react-router-dom/es/Redirect';
 
 class SignIn extends Component {
 
@@ -13,13 +12,12 @@ class SignIn extends Component {
 		super(props);
 		this.state = {
 			isLoading: false,
-			redirect: false
 		};
 		this.onLoading = this.onLoading.bind(this);
 	}
 
-	onLoading(loading, redirect) {
-		this.setState({isLoading: loading, redirect: redirect});
+	onLoading(loading) {
+		this.setState({isLoading: loading});
 	}
 
 	render() {
@@ -38,7 +36,6 @@ class SignIn extends Component {
 				</div>
 			</div>
 		);
-		if (this.state.redirect === true) return (<Redirect push to='/'/>);
 		return (
 			<div className='intro'>
 				<h1 className='heading'>WeTrial</h1>
