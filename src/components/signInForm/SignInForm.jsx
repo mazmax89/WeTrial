@@ -80,8 +80,8 @@ class SignInForm extends Component {
 				this.props.onLoading(false, true);
 			},
 			(data) => {
-				this.setState({errors: data.message});
 				this.props.onLoading(false);
+				this.setState({errors: data.message});
 			});
 	}
 

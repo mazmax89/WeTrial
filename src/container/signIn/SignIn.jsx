@@ -23,13 +23,27 @@ class SignIn extends Component {
 	}
 
 	render() {
-		if (this.state.isLoading) return (<Loader type='line-scale' color={'#004e99'} active/>);
+		let style = {
+			display: 'none',
+		};
+		if (this.state.isLoading) return (
+			<div>
+				<Loader type='line-scale' color={'#36b5e0'} active/>
+				<div className='intro' style={style}>
+					<SignInForm
+						onLoading={this.onLoading.bind(this)}
+						signInAction={this.props.signInAction}
+						signInWithProviderAction={this.props.signInWithProviderAction}
+						addFlashMessage={this.props.addFlashMessage}/>
+				</div>
+			</div>
+		);
 		if (this.state.redirect === true) return (<Redirect push to='/'/>);
 		return (
 			<div className='intro'>
 				<h1 className='heading'>WeTrial</h1>
 				<div className='verticalAlignBlock'>
-					<SignInForm onLoading = {this.onLoading.bind(this)}
+					<SignInForm onLoading={this.onLoading.bind(this)}
 								signInAction={this.props.signInAction}
 								signInWithProviderAction={this.props.signInWithProviderAction}
 								addFlashMessage={this.props.addFlashMessage}/>
