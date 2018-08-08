@@ -20,12 +20,18 @@ class UserSettings extends Component {
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
+	componentDidMount() {
+	}
+
 	onFormSubmit(event) {
+		let dateOfBirth = this.state.selectedDay;
+		if (this.state.selectedDay === '') {
+			dateOfBirth = this.props.currentUser.secondUserData.dateOfBirth;
+		}
 		event.preventDefault();
 		const email = this.refs.email.value;
 		const displayName = this.refs.displayName.value;
 		const aboutUser = this.refs.aboutUser.value;
-		const dateOfBirth = this.state.selectedDay;
 		this.props.updateUser({email, displayName, aboutUser, dateOfBirth}).then(
 			(res) => {// eslint-disable-line
 				this.props.addFlashMessage({

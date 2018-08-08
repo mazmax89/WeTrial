@@ -6,6 +6,7 @@ import './SigInFormStyle.scss';
 import PropTypes from 'prop-types';
 import Redirect from 'react-router-dom/es/Redirect';
 import {NavLink} from 'react-router-dom';
+import {Loader} from 'react-loaders';
 
 class SignInForm extends Component {
 
@@ -70,6 +71,7 @@ class SignInForm extends Component {
 	}
 
 	signInWithProvider() {
+		this.setState({errors: {}, isLoading: true});
 		let provider = 'google';
 		this.props.signInWithProviderAction(provider).then(
 			(res) => {
@@ -86,7 +88,8 @@ class SignInForm extends Component {
 
 	render() {
 		const errors = this.state.errors;
-		if  (this.state.redirect === true ) return ( <Redirect push to='/'/>);
+		if (this.state.redirect === true) return (<Redirect push to='/'/>);
+		if (this.state.isLoading) return (<Loader type='line-scale' color={'#004e99'} active/>);
 		return (
 			<div className='signInForm'>
 				<Form onSubmit={this.onFormSubmit}>

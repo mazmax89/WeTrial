@@ -13,7 +13,7 @@ module.exports = merge(commonConfig, {
   },
 
   output: {
-    filename: 'js/[name].[hash].js',
+    filename: 'js/bundle.js',
     chunkFilename: '[id].[hash].chunk.js'
   },
 

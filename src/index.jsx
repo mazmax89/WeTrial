@@ -5,40 +5,41 @@ import {Provider} from 'react-redux';
 import store from './store/index';
 import BrowserRouter from 'react-router-dom/es/BrowserRouter';
 import App from './container/App';
-import {combineUserDataAndSet} from './actions/userActions';
+import {combineUserDataAndSet, setCurrentUser} from './actions/userActions';
 
 const DefaultStore = store();
 
 const key = Object.keys(localStorage).find(e => e.match(/firebase:authUser/));
 const data = JSON.parse(localStorage.getItem(key));
 if (data) {
-    DefaultStore.dispatch(combineUserDataAndSet(data));
+	DefaultStore.dispatch(setCurrentUser(data));
+	DefaultStore.dispatch(combineUserDataAndSet(data)); //TODO :)
 }
 
 ReactDom.render(
-    <Provider store={DefaultStore}>
-        <AppContainer warnings={false}>
-            <BrowserRouter>
-                <App/>
-            </BrowserRouter>
-        </AppContainer>
-    </Provider>,
-    document.getElementById('app')
+	<Provider store={DefaultStore}>
+		<AppContainer warnings={false}>
+			<BrowserRouter>
+				<App/>
+			</BrowserRouter>
+		</AppContainer>
+	</Provider>,
+	document.getElementById('app')
 );
 
 if (module.hot) {
-    module.hot.accept('./container/App.jsx', () => {
-        const NextApp = require('./container/App.jsx').default;
-        ReactDom.render(
-            <Provider store={DefaultStore}>
-                <AppContainer>
-                    <BrowserRouter>
-                        <NextApp/>
-                    </BrowserRouter>
-                </AppContainer>
-            </Provider>,
-            document.getElementById('app')
-        );
-    });
+	module.hot.accept('./container/App.jsx', () => {
+		const NextApp = require('./container/App.jsx').default;
+		ReactDom.render(
+			<Provider store={DefaultStore}>
+				<AppContainer>
+					<BrowserRouter>
+						<NextApp/>
+					</BrowserRouter>
+				</AppContainer>
+			</Provider>,
+			document.getElementById('app')
+		);
+	});
 }
 

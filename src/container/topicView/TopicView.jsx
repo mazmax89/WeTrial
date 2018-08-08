@@ -8,59 +8,62 @@ import TopicMainBox from '../../components/topicView/TopicView';
 
 class TopicMain extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            topicsData: [],
-            errors: {}
-        };
-        this.getById();
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			topicsData: [],
+			errors: {}
+		};
+	}
 
-    getById() {
-        if (this.props.signIn.isAuthenticated) {
-            this.props.getTopicById(this.props.match.params.id).then(
-                (data) => {
-                    this.setState({topicsData: data.data.topic});
-                },
-                (data) => {
-                    this.setState({errors: data.response.data, isLoading: false});
-                }
-            );
-        }
-    }
+	componentWillMount() {
+		this.getById();
+	}
 
-    render() {
-        const {isAuthenticated} = this.props.signIn;
+	getById() {
+		let topicId = this.props.match.params.id;
+		this.props.getTopicById(topicId).then(
+			(data) => {
+				let topic = data.val();
+				this.setState({topicsData: topic});
+			},
+			(res) => {
+				console.log(res);
+				this.setState({errors: res.response.data, isLoading: false});
+			}
+		);
+	}
 
-        if (isAuthenticated) {
-            return (
-                <div className='topicMainContainer'>
-                    <Row>
-                        <Col xs='12' className='topicMain'>
-                            <TopicMainBox topicData={this.state.topicsData}/>
-                        </Col>
-                    </Row>
-                </div>
-            );
-        } else {
-            return (
-                <Alert color='danger' className='row justify-content-center'>
-                    <span>You don't have permissions to see this</span>
-                </Alert>
-            );
-        }
-    }
+	render() {
+		const {isAuthenticated} = this.props.currentUser;
+		if (isAuthenticated) {
+			return (
+				<div className='topicMainContainer'>
+					<Row>
+						<Col xs='12' className='topicMain'>
+							<TopicMainBox topicData={this.state.topicsData}/>
+						</Col>
+					</Row>
+				</div>
+			);
+		} else {
+			return (
+				<Alert color='danger' className='row justify-content-center'>
+					<span>You don't have permissions to see this</span>
+				</Alert>
+			);
+		}
+	}
 }
 
 TopicMain.propTypes = {
-    signIn: PropTypes.object.isRequired
+	currentUser: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
-    return {
-        signIn: state.signIn
-    };
+	return {
+		currentUser: state.currentUser
+	};
 }
 
 export default connect(mapStateToProps, {addFlashMessage, getTopicById})(TopicMain);

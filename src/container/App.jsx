@@ -31,7 +31,7 @@ export default class App extends Component {
                     <Route path='/signup' component={SignUp}/>
                     <Route path='/signin' component={SignIn}/>
                     <Route path='/settings' component={UserSettings}/>
-                    <Route path={'/topics/:id'} component={TopicMain}/>
+                    <Route path='/topic/:id' component={TopicMain}/>
                     <Route path='/topic' component={Topics}/>
                     <Route path='/reset' component={ResetPasswordForm}/>
                 </AnimatedSwitch>

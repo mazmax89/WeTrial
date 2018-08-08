@@ -7,27 +7,39 @@ export function createTopicAction(topicData, authData) {
     return FireBaseTools.getDatabaseReference('topics/' + topicData.topicCategory + '/' + topicId).set({
       topicName: topicData.topicName,
       topicText: topicData.topicText,
-      user: authData.uid,
-      displayName: authData.displayName
+      userId: authData.uid,
+      topicId: topicId
     });
   }
 }
 
-export const getAllTopics = () => async dispatch => {
-  FireBaseTools.getDatabaseReference('/topics/main').on('value', snapshot => {
-    let data = snapshot.val();
-    let arrOfData = [];
-    for(let index in data) {
-      arrOfData.push(data[index])
-    }
-    dispatch({
-      type: FETCH_TOPICS,
-      payload: arrOfData
+export const getAllTopics = (status) => async dispatch => {
+  if (!status) {
+    FireBaseTools.getDatabaseReference('/topics/main').off();
+  } else if (status){
+    FireBaseTools.getDatabaseReference('/topics/main').on('value', snapshot => {
+      let data = snapshot.val();
+      let arrOfData = [];
+      for (let index in data) {
+        arrOfData.push(data[index])
+      }
+      dispatch({
+        type: FETCH_TOPICS,
+        payload: arrOfData
+      });
     });
-  });
+  }
 };
 
 export function getTopicById(identifier) {
+  return dispatch => { // eslint-disable-line
+    return FireBaseTools.getDatabaseReference('topics/main/' + identifier).once('value', (snapshot) => {
+      //console.log(snapshot.key);
+    });
+  }
+}
+
+export function getTopicByUserId(identifier) {
   return dispatch => { // eslint-disable-line
     return FireBaseTools.getDatabaseReference('topics/').orderByChild('user').equalTo(authData.uid).on('child_added', (snapshot) => {
       console.log(snapshot.key);

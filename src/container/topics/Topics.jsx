@@ -16,17 +16,14 @@ class Topics extends Component {
 			errors: {},
 			isLoading: false
 		};
-		this.getAll = this.getAll.bind(this);
+	}
+
+	componentWillUnmount() {
+		this.props.getAllTopics(false);
 	}
 
 	componentWillMount() {
-		this.getAll();
-	}
-
-	getAll() {
-		if (this.props.currentUser.isAuthenticated) {
-			this.props.getAllTopics();
-		}
+		this.props.getAllTopics(true);
 	}
 
 	render() {

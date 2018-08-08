@@ -10,6 +10,7 @@ const isProd = NODE_ENV === 'production';
 module.exports = {
   output: {
     path: helpers.root('build'),
+    publicPath: '/'
   },
 
   resolve: {
