@@ -7,6 +7,7 @@ import CreateTopic from '../../components/createTopicItem/CreateTopic';
 import {createTopicAction, getAllTopics} from '../../actions/topicAction';
 import {addFlashMessage} from '../../actions/flashMessageAction';
 import TopicsItemList from '../../components/topicItem/TopicsItemList';
+import {Loader} from 'react-loaders';
 
 class Topics extends Component {
 

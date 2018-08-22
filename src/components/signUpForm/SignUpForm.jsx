@@ -6,6 +6,7 @@ import './SignUpFormStyle.scss';
 import PropTypes from 'prop-types';
 import Redirect from 'react-router-dom/es/Redirect';
 import Link from 'react-router-dom/es/Link';
+import {Loader} from 'react-loaders';
 
 class SignUpForm extends Component {
 
@@ -75,6 +76,9 @@ class SignUpForm extends Component {
 	render() {
 		const errors = this.state.errors;
 		const redirect = (this.state.redirect ? <Redirect push to='/'/> : null);
+		if (this.state.isLoading) return (
+				<Loader type='line-scale' color={'#36b5e0'} active/>
+		);
 		return (
 			<Form onSubmit={this.onFormSubmit}>
 				<div className='title'>

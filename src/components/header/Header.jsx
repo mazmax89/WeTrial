@@ -46,36 +46,51 @@ class Header extends Component {
 	render() {
 		const {isAuthenticated} = this.props.currentUser;
 		const menu = (
-			isAuthenticated ?
-				[
-					<NavLink key='topics' to='/topic'>Topics</NavLink>,
-					<NavLink key='chat' to='/chat'>Chat</NavLink>,
-					<NavLink key='settings' to='/settings'>Settings</NavLink>,
-					<a key='logout'
-					   href='#'
-					   onClick={this.logOut}>
-						Logout
-					</a>
-				]
-				: [
-					<NavLink key='signup' to='/signup'>Sign Up</NavLink>,
-					<NavLink key='signin' to='/signin'>Sign In</NavLink>
-				]
+				isAuthenticated ?
+					[
+						<Collapse key='menu' className='row' isOpen={this.state.isOpen} navbar>
+							<Nav className='col-md-5' navbar>
+								<NavLink to='/'>Home</NavLink>
+								<NavLink to='/topic'>Topics</NavLink>
+								<NavLink to='/chat'>Chat</NavLink>
 
-		);
+							</Nav>
+							<div className='dropdown userMenu col-1 offset-md-6'>
+								<a className='dropdown-toggle' href='#' role='button'
+								   id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true'
+								   aria-expanded='false'>
+									<img src={this.props.currentUser.user.photoURL} alt='user'/>
 
+								</a>
+								<div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+									<NavLink className='dropdown-item' to='/settings'>Settings</NavLink>
+									<NavLink className='dropdown-item'
+									   to='/signin'
+									   onClick={this.logOut}>
+										Logout
+									</NavLink>
+								</div>
+							</div>
+						</Collapse>
+
+					]
+					:
+					[
+						<Collapse key='menu' className='row' isOpen={this.state.isOpen} navbar>
+							<Nav className='col-md-5' navbar>
+								<NavLink to='/signup'>Sign Up</NavLink>
+								<NavLink to='/signin'>Sign In</NavLink>
+							</Nav>
+						</Collapse>
+					]
+			)
+		;
 		return (
 			<header>
 				<Navbar expand='md' color='faded' light>
-					<NavbarBrand href='/' className='mr-auto'>WeTrial</NavbarBrand>
+					<NavbarBrand href='/'>WeTrial</NavbarBrand>
 					<NavbarToggler onClick={this.toggle} className='mr-2'/>
-					<Collapse isOpen={this.state.isOpen} navbar>
-						<Nav navbar>
-							<NavLink to='/'>Home</NavLink>
-							{this.props.currentUser.displayName}
-							{menu}
-						</Nav>
-					</Collapse>
+					{menu}
 				</Navbar>
 			</header>
 		);
