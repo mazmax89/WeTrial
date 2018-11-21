@@ -1,5 +1,6 @@
 # ProjectM
 
+React-forum application (e.g for trial community)
 This is project using the following technologies:
 - [React](https://facebook.github.io/react/) and [React Router](https://reacttraining.com/react-router/) for the frontend
 - [FireBase] FireHost, FireAuth.
