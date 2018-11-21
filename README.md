@@ -1,4 +1,4 @@
-# ProjectM
+# React forum app (WeTrial)
 
 React-forum application (e.g for trial community)
 This is project using the following technologies:
