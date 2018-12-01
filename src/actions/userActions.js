@@ -1,5 +1,4 @@
 import {
-  FETCH_TOPICS,
   SET_CURRENT_USER
 } from './types';
 import FireBaseTools from '../firebase/firebase';
@@ -9,6 +8,14 @@ export function setCurrentUser(user, secondUserData) {
     type: SET_CURRENT_USER,
     user, secondUserData
   };
+}
+
+export function sessionCheck() {
+  return dispatch => {
+     return FireBaseTools.fetchUser().then(user => {
+    if (user) dispatch(setCurrentUser(user));
+  });
+  }
 }
 
 export const combineUserDataAndSet = (user) => async dispatch => {
@@ -21,7 +28,7 @@ export const combineUserDataAndSet = (user) => async dispatch => {
     };
     dispatch(setCurrentUser(user, secondUserData));
   });
-}
+};
 
 export function signInAction(user) {
   return dispatch => {

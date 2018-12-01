@@ -2,6 +2,7 @@
 /build
 .build
 .idea
+package-lock.json
 
 # Config file
 src/firebase/config.js

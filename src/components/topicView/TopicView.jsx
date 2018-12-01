@@ -23,8 +23,8 @@ class TopicMainBox extends Component {
 
 					<Col className='topicText'>
 						<p>{this.props.topicData.topicText}</p>
-					</Col>
-				</Container>
+                    </Col>
+                </Container>
 			</div>
 		);
 	}

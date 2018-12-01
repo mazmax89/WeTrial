@@ -4,21 +4,13 @@ import {AppContainer} from 'react-hot-loader';
 import {Provider} from 'react-redux';
 import store from './store/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import $ from 'jquery';
-import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import BrowserRouter from 'react-router-dom/es/BrowserRouter';
 import App from './container/App';
-import {combineUserDataAndSet, setCurrentUser} from './actions/userActions';
+import {sessionCheck} from './actions/userActions';
 
 const DefaultStore = store();
-
-const key = Object.keys(localStorage).find(e => e.match(/firebase:authUser/));
-const data = JSON.parse(localStorage.getItem(key));
-if (data) {
-	DefaultStore.dispatch(setCurrentUser(data));
-	DefaultStore.dispatch(combineUserDataAndSet(data)); //TODO :)
-}
+DefaultStore.dispatch(sessionCheck());
 
 ReactDom.render(
 	<Provider store={DefaultStore}>
