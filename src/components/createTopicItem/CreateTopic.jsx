@@ -1,12 +1,22 @@
 import React, {Component} from 'react';
 import './CreateTopicStyle.scss';
 import PropTypes from 'prop-types';
-import {
-	Alert, Button, Card, CardBody, CardTitle, Form, FormGroup, Modal, ModalBody, ModalFooter, ModalHeader, Input
-} from 'reactstrap';
 import TextFieldGroup from '../common/TextFieldGroup';
-import Redirect from 'react-router-dom/es/Redirect';
 import validateInput from '../../utils/validation/topics';
+import {
+	Alert,
+	Button,
+	Card,
+	CardBody,
+	CardTitle,
+	Form,
+	FormGroup,
+	Input,
+	Modal,
+	ModalBody,
+	ModalFooter,
+	ModalHeader
+} from 'reactstrap';
 
 export default class CreateTopic extends Component {
 
@@ -86,19 +96,17 @@ export default class CreateTopic extends Component {
 									<Form onSubmit={this.onSubmit}>
 										<FormGroup className='form-group'>
 											<Input type='select' name='topicCategory' id='exampleSelect' onChange={this.onChanged}>
-												<option>Main</option>
-												<option>Components</option>
-												<option>Videos</option>
-												<option>News</option>
-												<option>Caps</option>
+												  <option>Main</option>
+															<option>Components</option>
+												   <option>Videos</option>
+												<option>News</option><option>Caps</option>
 											</Input>
 											<TextFieldGroup
 												error={errors.topicName}
 												label='Enter topic name'
 												onChanged={this.onChanged}
 												field='topicName'
-												type='text'
-											/>
+												type='text'/>
 											<textarea name='topicText' onChange={this.onChanged}
 													  placeholder='Topic text'
 													  maxLength={65530}/>

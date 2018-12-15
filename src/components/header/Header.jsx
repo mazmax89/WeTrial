@@ -7,109 +7,105 @@ import PropTypes from 'prop-types';
 import bindActionCreators from 'redux/es/bindActionCreators';
 import {signOutAction} from '../../actions/userActions';
 import {addFlashMessage} from '../../actions/flashMessageAction';
-import Redirect from 'react-router-dom/es/Redirect';
-
 
 class Header extends Component {
 
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false,
+        };
+        this.toggle = this.toggle.bind(this);
+        this.signOut = this.signOut.bind(this);
+    }
 
-		this.state = {
-			isOpen: false,
-		};
+    signOut() {
+        this.props.signOutAction().then(
+            (res) => { //eslint-disable-line
+                this.props.addFlashMessage({
+                    type: 'success',
+                    text: 'You signed out!'
+                });
+            },
+            (data) => {
+                console.log(data);
+            }
+        );
+    }
 
-		this.toggle = this.toggle.bind(this);
-		this.logOut = this.logOut.bind(this);
-	}
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
 
-	logOut() {
-		this.props.signOutAction().then(
-			(res) => { //eslint-disable-line
-				this.props.addFlashMessage({
-					type: 'success',
-					text: 'You signed out!'
-				});
-			},
-			(data) => {
-				console.log(data);
-			}
-		);
-	}
+    render() {
+        const {isAuthenticated} = this.props.currentUser;
+        const menu = (
+                isAuthenticated ?
+                    [
+                        <Collapse key='menu' className='row' isOpen={this.state.isOpen} navbar>
+                            <Nav className='col-md-5' navbar>
+                                <NavLink to='/'>Home</NavLink>
+                                <NavLink to='/topic'>Topics</NavLink>
+                                <NavLink to='/chat'>Chat</NavLink>
 
-	toggle() {
-		this.setState({
-			isOpen: !this.state.isOpen
-		});
-	}
+                            </Nav>
+                            <div className='dropdown userMenu col-1 offset-md-6'>
+                                <a className='dropdown-toggle' href='#' role='button'
+                                   id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true'
+                                   aria-expanded='false'>
+                                    <img src={this.props.currentUser.user.photoURL} alt='user'/>
 
-	render() {
-		const {isAuthenticated} = this.props.currentUser;
-		const menu = (
-				isAuthenticated ?
-					[
-						<Collapse key='menu' className='row' isOpen={this.state.isOpen} navbar>
-							<Nav className='col-md-5' navbar>
-								<NavLink to='/'>Home</NavLink>
-								<NavLink to='/topic'>Topics</NavLink>
-								<NavLink to='/chat'>Chat</NavLink>
+                                </a>
+                                <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                                    <NavLink className='dropdown-item' to='/settings'>Settings</NavLink>
+                                    <NavLink className='dropdown-item'
+                                             to='/signin'
+                                             onClick={this.signOut}>
+                                        Logout
+                                    </NavLink>
+                                </div>
+                            </div>
+                        </Collapse>
 
-							</Nav>
-							<div className='dropdown userMenu col-1 offset-md-6'>
-								<a className='dropdown-toggle' href='#' role='button'
-								   id='dropdownMenuLink' data-toggle='dropdown' aria-haspopup='true'
-								   aria-expanded='false'>
-									<img src={this.props.currentUser.user.photoURL} alt='user'/>
-
-								</a>
-								<div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-									<NavLink className='dropdown-item' to='/settings'>Settings</NavLink>
-									<NavLink className='dropdown-item'
-									   to='/signin'
-									   onClick={this.logOut}>
-										Logout
-									</NavLink>
-								</div>
-							</div>
-						</Collapse>
-
-					]
-					:
-					[
-						<Collapse key='menu' className='row' isOpen={this.state.isOpen} navbar>
-							<Nav className='col-md-5' navbar>
-								<NavLink to='/signup'>Sign Up</NavLink>
-								<NavLink to='/signin'>Sign In</NavLink>
-							</Nav>
-						</Collapse>
-					]
-			)
-		;
-		return (
-			<header>
-				<Navbar expand='md' color='faded' light>
-					<NavbarBrand href='/'>WeTrial</NavbarBrand>
-					<NavbarToggler onClick={this.toggle} className='mr-2'/>
-					{menu}
-				</Navbar>
-			</header>
-		);
-	}
+                    ]
+                    :
+                    [
+                        <Collapse key='menu' className='row' isOpen={this.state.isOpen} navbar>
+                            <Nav className='col-md-5' navbar>
+                                <NavLink to='/signup'>Sign Up</NavLink>
+                                <NavLink to='/signin'>Sign In</NavLink>
+                            </Nav>
+                        </Collapse>
+                    ]
+            )
+        ;
+        return (
+            <header>
+                <Navbar expand='md' color='faded' light>
+                    <NavbarBrand href='/'>WeTrial</NavbarBrand>
+                    <NavbarToggler onClick={this.toggle} className='mr-2'/>
+                    {menu}
+                </Navbar>
+            </header>
+        );
+    }
 }
 
 Header.propTypes = {
-	currentUser: PropTypes.object.isRequired,
-	signOutAction: PropTypes.func.isRequired
+    currentUser: PropTypes.object.isRequired,
+    signOutAction: PropTypes.func.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({signOutAction, addFlashMessage}, dispatch);
+    return bindActionCreators({signOutAction, addFlashMessage}, dispatch);
 }
 
 function mapStateToProps(state) {
-	return {
-		currentUser: state.currentUser
-	};
+    return {
+        currentUser: state.currentUser
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
